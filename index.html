@@ -1,23 +1,496 @@
-<!DOCTYPE html>
+<\!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Drew's Briefing</title>
-<style>
-:root{--bg:#0f172a;--card:#1e293b;--accent:#3b82f6;--accent-green:#22c55e;--accent-yellow:#eab308;--text:#f1f5f9;--text-muted:#94a3b8;--text-dim:#64748b;--border:#334155}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}.container{max-width:480px;margin:0 auto;padding:16px;padding-bottom:80px}.header{text-align:center;padding:20px 0 16px}.header h1{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}.header .date{font-size:0.95rem;color:var(--text-muted);margin-top:4px}.header .block-day{display:inline-block;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:99px;margin-top:8px;letter-spacing:.05em}.header .updated{font-size:.7rem;color:var(--text-dim);margin-top:6px}.section{margin-top:20px}.section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);margin-bottom:8px;padding-left:4px}.card{background:var(--card);border-radius:14px;padding:14px;margin-bottom:8px}.schedule-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}.schedule-item:last-child{border-bottom:none}.block-badge{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}.block-a{background:#3b82f620;color:#60a5fa}.block-b{background:#8b5cf620;color:#a78bfa}.block-c{background:#22c55e20;color:#4ade80}.block-d{background:#64748b20;color:#94a3b8}.schedule-info h3{font-size:.9rem;font-weight:600}.schedule-info .meta{font-size:.78rem;color:var(--text-muted);margin-top:1px}.calendar-pill{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--card);border-radius:14px}.cal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.cal-dot.muted{background:var(--text-dim)}.assignment{padding:12px 0;border-bottom:1px solid var(--border)}.assignment:last-child{border-bottom:none}.assignment .due-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}.due-today{color:var(--accent-yellow)}.due-week{color:var(--text-dim)}.assignment p{font-size:.85rem;color:var(--text-muted)}.assignment .class-name{color:var(--text);font-weight:600}.lookahead-day{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}.lookahead-day:last-child{border-bottom:none}.la-date{width:50px;flex-shrink:0;text-align:center}.la-date .day-num{font-size:1.1rem;font-weight:700}.la-date .day-name{font-size:.65rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}.la-content{flex:1}.la-blocks{font-size:.7rem;color:var(--text-dim);font-weight:600;letter-spacing:.05em}.la-content p{font-size:.82rem;color:var(--text-muted);margin-top:2px}.la-highlight{background:#eab30810;border-left:3px solid var(--accent-yellow);border-radius:0 10px 10px 0;padding-left:10px;margin-left:-14px;padding-top:10px;padding-bottom:10px}.la-highlight .la-date .day-num{color:var(--accent-yellow)}.gp-item{display:flex;gap:10px;padding:8px 0}.gp-num{width:24px;height:24px;border-radius:8px;background:var(--accent);color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}.gp-item p{font-size:.85rem;color:var(--text-muted)}.warning{background:#eab30815;border:1px solid #eab30830;border-radius:12px;padding:10px 14px;font-size:.8rem;color:var(--accent-yellow);display:flex;gap:8px;align-items:flex-start;margin-top:10px}.footer-note{margin-top:24px;padding:12px 14px;background:var(--card);border-radius:12px;font-size:.72rem;color:var(--text-dim);line-height:1.6}.off-note{font-size:.78rem;color:var(--text-dim);padding:6px 4px;font-style:italic}.weekend{opacity:.4}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drew's Daily Briefing — April 16, 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      padding: 16px;
+      min-height: 100vh;
+    }
+    .container { max-width: 480px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: #1e293b;
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      margin-bottom: 12px;
+      border-left: 4px solid #3b82f6;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 4px;
+    }
+    .header .date-line {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .header .updated {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    .block-day-badge {
+      display: inline-block;
+      background: #3b82f6;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Warning banner */
+    .warning-banner {
+      background: #422006;
+      border: 1px solid #eab308;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #fef08a;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .warning-banner .icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* Cards */
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+    .card h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    /* Schedule blocks */
+    .schedule-grid { display: flex; flex-direction: column; gap: 8px; }
+    .block-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #0f172a;
+    }
+    .block-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .block-F { background: #1d4ed8; color: #fff; }
+    .block-E { background: #166534; color: #fff; }
+    .block-H { background: #7c3aed; color: #fff; }
+    .block-G { background: #0369a1; color: #fff; }
+    .block-info { flex: 1; }
+    .block-name { font-weight: 600; font-size: 14px; color: #f1f5f9; }
+    .block-detail { font-size: 12px; color: #94a3b8; margin-top: 1px; }
+    .block-topic { font-size: 12px; color: #60a5fa; margin-top: 2px; }
+
+    .not-meeting { margin-top: 10px; }
+    .not-meeting-label { font-size: 11px; color: #475569; margin-bottom: 6px; }
+    .not-meeting-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .nm-badge {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #475569;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Assignment items */
+    .assign-item {
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: #0f172a;
+      margin-bottom: 7px;
+    }
+    .assign-item:last-child { margin-bottom: 0; }
+    .assign-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .assign-class { font-weight: 600; font-size: 13px; color: #f1f5f9; }
+    .due-today { background: #eab308; color: #000; font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+    .due-tomorrow { background: #ea580c; color: #fff; font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+    .due-soon { background: #334155; color: #94a3b8; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+    .assign-text { font-size: 13px; color: #cbd5e1; }
+    .assign-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    /* 7-Day lookahead */
+    .day-row {
+      padding: 9px 10px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      background: #0f172a;
+    }
+    .day-row:last-child { margin-bottom: 0; }
+    .day-row.today { border-left: 3px solid #3b82f6; background: #0d1c35; }
+    .day-row.weekend { opacity: 0.4; }
+    .day-row.highlight { border-left: 3px solid #eab308; background: #1a1500; }
+    .day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .day-name { font-weight: 700; font-size: 13px; color: #f1f5f9; }
+    .day-blocks { font-size: 11px; color: #64748b; }
+    .day-items { display: flex; flex-direction: column; gap: 3px; }
+    .day-item { font-size: 12px; color: #94a3b8; padding-left: 2px; }
+    .day-item.important { color: #fbbf24; font-weight: 600; }
+    .day-item.test { color: #f87171; font-weight: 700; }
+
+    /* Game plan */
+    .game-plan-item {
+      display: flex;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: #0f172a;
+      margin-bottom: 7px;
+      align-items: flex-start;
+    }
+    .game-plan-item:last-child { margin-bottom: 0; }
+    .gp-num {
+      width: 22px;
+      height: 22px;
+      background: #3b82f6;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .gp-text { font-size: 13px; color: #cbd5e1; }
+    .gp-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    /* Footer */
+    .footer {
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .footer strong { color: #64748b; }
+    .section-divider {
+      height: 1px;
+      background: #334155;
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
-<div class="header"><h1>Drew's Briefing</h1><div class="date">Wednesday, April 15, 2026</div><div class="block-day">ABCD DAY</div><div class="updated">Updated Apr 15 at 10:01 PM</div></div>
-<div class="section"><div class="section-title">Today's Schedule</div><div class="card"><div class="schedule-item"><div class="block-badge block-a">A</div><div class="schedule-info"><h3>Sports &amp; Literature</h3><div class="meta">Dr. Jan · New Oaks NO 4</div></div></div><div class="schedule-item"><div class="block-badge block-b">B</div><div class="schedule-info"><h3>Mandarin V</h3><div class="meta">Shujun Xiang · Richardson Hall RH 2</div></div></div><div class="schedule-item"><div class="block-badge block-c">C</div><div class="schedule-info"><h3>College Counselling</h3><div class="meta"></div></div></div><div class="schedule-item"><div class="block-badge block-d">D</div><div class="schedule-info"><h3>Free Block</h3><div class="meta">Open Block</div></div></div></div><div class="off-note">Biology, MVC, Digital Music &amp; Moral Philosophy do not meet today.</div></div>
-<div class="section"><div class="section-title">Calendar</div><div class="calendar-pill"><div class="cal-dot muted"></div><span style="font-size:0.85rem;color:var(--text-muted)">Tax Day (U.S.) — No other events today</span></div></div>
-<div class="section"><div class="section-title">Priority Assignments</div><div class="card"><div class="assignment"><div class="due-label due-today">Due Tomorrow · Thu 4/16</div><p><span class="class-name">MVC</span> — HW: Section 5.1, Page 313, #1, 2, 3, 6, 8</p></div><div class="assignment"><div class="due-label due-week">Due Friday 4/17</div><p><span class="class-name">MVC</span> — Sec 5.3, p336, #1, 2, 3, 5, 6</p></div></div><div class="warning"><span>⚠</span><span>Blackbaud was unavailable (SSO expired). Check manually for assignments from other classes.</span></div></div>
-<div class="section"><div class="section-title">7-Day Lookahead</div><div class="card"><div class="lookahead-day"><div class="la-date"><div class="day-num">15</div><div class="day-name">Wed</div></div><div class="la-content"><div class="la-blocks">ABCD</div><p>Sports &amp; Lit, Mandarin V, College Counselling, Free Block</p></div></div><div class="lookahead-day"><div class="la-date"><div class="day-num">16</div><div class="day-name">Thu</div></div><div class="la-content"><div class="la-blocks">HGFE</div><p>MVC: Double Integral Day 2 (HW 5.1 due)<br>Biology meets</p></div></div><div class="lookahead-day"><div class="la-date"><div class="day-num">17</div><div class="day-name">Fri</div></div><div class="la-content"><div class="la-blocks">DCBA</div><p>MVC: Double Integral Day 3<br>HW Sec 5.3 assigned</p></div></div><div class="lookahead-day weekend"><div class="la-date"><div class="day-num">18–19</div><div class="day-name">Wknd</div></div><div class="la-content"><p>Weekend</p></div></div><div class="lookahead-day la-highlight"><div class="la-date"><div class="day-num">20</div><div class="day-name">Mon</div></div><div class="la-content"><div class="la-blocks">FEHG</div><p>MVC: Double Integral Day 3<br><strong style="color:var(--accent-yellow)">5:30–8:15 PM: Mock College File Review + College Fair @ Marin Catholic (REQUIRED)</strong></p></div></div><div class="lookahead-day"><div class="la-date"><div class="day-num">21</div><div class="day-name">Tue</div></div><div class="la-content"><div class="la-blocks">BADC</div><p>MVC: Double Integral in Polar Coordinates</p></div></div><div class="lookahead-day"><div class="la-date"><div class="day-num">22</div><div class="day-name">Wed</div></div><div class="la-content"><div class="la-blocks">EFGH</div><p>MVC: Double Integral in Polar Coordinates<br>Biology meets</p></div></div></div><div class="warning"><span>📖</span><span>MVC Review sessions Thu/Fri 4/23–24 — possible test the following week. Start reviewing early.</span></div></div>
-<div class="section"><div class="section-title">Game Plan</div><div class="card"><div class="gp-item"><div class="gp-num">1</div><p>Complete MVC HW Sec 5.1 p313 #1, 2, 3, 6, 8 (due Thursday).</p></div><div class="gp-item"><div class="gp-num">2</div><p>Use today's D Block (Free Block) for homework or studying.</p></div><div class="gp-item"><div class="gp-num">3</div><p>Check Blackbaud manually for assignments from Bio, Moral Phil, Digital Music, or Mandarin.</p></div><div class="gp-item"><div class="gp-num">4</div><p>Prepare for Monday evening: Mock College File Review + College Fair at Marin Catholic (5:30–8:15 PM). Attendance required — coordinate transportation.</p></div><div class="gp-item"><div class="gp-num">5</div><p>Start reviewing Double Integrals (Sec 5.1–5.3) early for upcoming Review sessions.</p></div></div></div>
-<div class="footer-note"><strong>Sources unavailable:</strong> Blackbaud (SSO expired), TeamSnap (login required), Dr. Jan calendar (not on personal Drive), Biology syllabus (could not navigate to April section).</div>
+
+  <\!-- HEADER -->
+  <div class="header">
+    <h1>Drew's Daily Briefing</h1>
+    <div class="date-line">Thursday, April 16, 2026</div>
+    <span class="block-day-badge">Day 4 — F · E · H · G Blocks</span>
+    <div class="updated">Updated April 16 at 12:14 PM</div>
+  </div>
+
+  <\!-- WARNING BANNERS -->
+  <div class="warning-banner">
+    <span class="icon">⚠️</span>
+    <div><strong>Bio Project due Tue–Wed 4/21–22</strong> — Comparison project (cell resp vs. photosynthesis), submit digitally. Only 5 days away\!</div>
+  </div>
+  <div class="warning-banner">
+    <span class="icon">🔴</span>
+    <div><strong>MVC Tests on Mon 4/27 & Tue 4/28</strong> — Double Integrals unit test. Review days 4/23–24.</div>
+  </div>
+  <div class="warning-banner">
+    <span class="icon">🔴</span>
+    <div><strong>Biology Cumulative Test Thu 4/30</strong> (E/F block) — Not including Origin of Life/Ecology/Plants.</div>
+  </div>
+
+  <\!-- TODAY'S SCHEDULE -->
+  <div class="card">
+    <h2>Today's Schedule</h2>
+    <div class="schedule-grid">
+      <div class="block-item">
+        <div class="block-badge block-F">F</div>
+        <div class="block-info">
+          <div class="block-name">MVC — Multivariable Calculus</div>
+          <div class="block-detail">Mahtab Lak · MVC Student's Folder</div>
+          <div class="block-topic">Topic: Double Integral Day 2</div>
+        </div>
+      </div>
+      <div class="block-item">
+        <div class="block-badge block-E">E</div>
+        <div class="block-info">
+          <div class="block-name">Biology Honors</div>
+          <div class="block-detail">Heather Duncan</div>
+          <div class="block-topic">Topic: Cell Resp / Fermentation</div>
+        </div>
+      </div>
+      <div class="block-item">
+        <div class="block-badge block-H">H</div>
+        <div class="block-info">
+          <div class="block-name">Moral Philosophy</div>
+          <div class="block-detail">H Block</div>
+        </div>
+      </div>
+      <div class="block-item">
+        <div class="block-badge block-G">G</div>
+        <div class="block-info">
+          <div class="block-name">Digital Music</div>
+          <div class="block-detail">G Block · Ableton Live</div>
+        </div>
+      </div>
+    </div>
+    <div class="not-meeting">
+      <div class="not-meeting-label">NOT MEETING TODAY</div>
+      <div class="not-meeting-badges">
+        <span class="nm-badge">A · Sports &amp; Lit</span>
+        <span class="nm-badge">B · Mandarin V</span>
+        <span class="nm-badge">C · College Counseling</span>
+        <span class="nm-badge">D · Free Block</span>
+      </div>
+    </div>
+  </div>
+
+  <\!-- PRIORITY ASSIGNMENTS -->
+  <div class="card">
+    <h2>Priority Assignments</h2>
+
+    <div class="assign-item">
+      <div class="assign-header">
+        <span class="assign-class">MVC — F Block</span>
+        <span class="due-today">DUE TODAY</span>
+      </div>
+      <div class="assign-text">§5.2 Page 332: #3, 4, 5, 9, #40 (part a)</div>
+      <div class="assign-sub">Double Integral Day 2 homework</div>
+    </div>
+
+    <div class="assign-item">
+      <div class="assign-header">
+        <span class="assign-class">Biology — E Block</span>
+        <span class="due-today">DUE TODAY</span>
+      </div>
+      <div class="assign-text">Watch Video 1 + Video 2 (cell respiration)</div>
+      <div class="assign-sub">Cell Resp/Fermentation class today</div>
+    </div>
+
+    <div class="assign-item">
+      <div class="assign-header">
+        <span class="assign-class">Sports &amp; Lit — A Block</span>
+        <span class="due-tomorrow">DUE FRI 4/17</span>
+      </div>
+      <div class="assign-text"><em>There's Always This Year</em> — first section</div>
+      <div class="assign-sub">Dr. Jan will provide PDF · Final Inciting Joy discussion on Friday</div>
+    </div>
+
+    <div class="assign-item">
+      <div class="assign-header">
+        <span class="assign-class">Biology — Comparison Project</span>
+        <span class="due-soon">DUE 4/21–22</span>
+      </div>
+      <div class="assign-text">Cell resp vs. photosynthesis — compare, redox &amp; oxidative phosphorylation</div>
+      <div class="assign-sub">Submit digitally on Blackbaud · Start now\!</div>
+    </div>
+
+    <div class="assign-item">
+      <div class="assign-header">
+        <span class="assign-class">MVC — Next Monday 4/20</span>
+        <span class="due-soon">DUE MON 4/20</span>
+      </div>
+      <div class="assign-text">§5.3 Page 336: #1, 2, 3, 5, 6</div>
+      <div class="assign-sub">Double Integral Day 3 homework · DCBA block assigned Fri, F block meets Mon</div>
+    </div>
+  </div>
+
+  <\!-- 7-DAY LOOKAHEAD -->
+  <div class="card">
+    <h2>7-Day Lookahead</h2>
+
+    <div class="day-row today">
+      <div class="day-header">
+        <span class="day-name">Thu Apr 16 — TODAY</span>
+        <span class="day-blocks">Day 4 · F E H G</span>
+      </div>
+      <div class="day-items">
+        <div class="day-item">📐 MVC: Double Integral Day 2 — HW §5.2 p.332 due</div>
+        <div class="day-item">🧬 Bio: Cell Resp/Fermentation — watch videos</div>
+        <div class="day-item">💭 Moral Philosophy · 🎵 Digital Music</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-header">
+        <span class="day-name">Fri Apr 17</span>
+        <span class="day-blocks">Day 5 · B A D C</span>
+      </div>
+      <div class="day-items">
+        <div class="day-item important">📚 Sports &amp; Lit: Final Inciting Joy discussion</div>
+        <div class="day-item important">→ HW due: <em>There's Always This Year</em> §1 (PDF from Dr. Jan)</div>
+        <div class="day-item">🗣️ Mandarin V (B Block)</div>
+      </div>
+    </div>
+
+    <div class="day-row weekend">
+      <div class="day-header">
+        <span class="day-name">Sat Apr 18</span>
+        <span class="day-blocks">Weekend</span>
+      </div>
+    </div>
+
+    <div class="day-row weekend">
+      <div class="day-header">
+        <span class="day-name">Sun Apr 19</span>
+        <span class="day-blocks">Weekend</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-header">
+        <span class="day-name">Mon Apr 20</span>
+        <span class="day-blocks">Day 6 · E F G H</span>
+      </div>
+      <div class="day-items">
+        <div class="day-item">📐 MVC: Double Integral Day 3 — §5.3 HW due</div>
+        <div class="day-item important">🧬 Bio: Compare cell resp/photo — work on Comparison Project</div>
+        <div class="day-item">🎵 Digital Music (G Block)</div>
+      </div>
+    </div>
+
+    <div class="day-row highlight">
+      <div class="day-header">
+        <span class="day-name">Tue Apr 21</span>
+        <span class="day-blocks">Day 1 · A B C D</span>
+      </div>
+      <div class="day-items">
+        <div class="day-item important">📚 Sports &amp; Lit: <em>There's Always This Year</em> discussion</div>
+        <div class="day-item important">→ HW due: String Theory reading</div>
+        <div class="day-item test">🧬 Bio Comparison Project DUE (digital submission)</div>
+        <div class="day-item">🗣️ Mandarin V (B Block)</div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-header">
+        <span class="day-name">Wed Apr 22</span>
+        <span class="day-blocks">Day 2 · H G F E</span>
+      </div>
+      <div class="day-items">
+        <div class="day-item">📐 MVC: Double Integral in Polar Coordinates</div>
+        <div class="day-item">🧬 Bio: (Project window closes — ensure submitted)</div>
+        <div class="day-item">💭 Moral Philosophy (H Block)</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+    <div style="font-size:11px;color:#64748b;padding:4px 2px;">
+      Further out: 4/23–24 MVC Review · 4/27–28 🔴 MVC Tests · 4/30 🔴 Bio Cumulative Test (E/F)
+    </div>
+  </div>
+
+  <\!-- GAME PLAN -->
+  <div class="card">
+    <h2>Game Plan</h2>
+
+    <div class="game-plan-item">
+      <div class="gp-num">1</div>
+      <div>
+        <div class="gp-text"><strong>Do MVC HW now</strong> — §5.2 p.332 #3,4,5,9,#40a</div>
+        <div class="gp-sub">Due today in F Block · Double Integrals</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">2</div>
+      <div>
+        <div class="gp-text"><strong>Watch Bio videos 1 &amp; 2</strong> (cell respiration)</div>
+        <div class="gp-sub">For E Block today — Cell Resp/Fermentation topic</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">3</div>
+      <div>
+        <div class="gp-text"><strong>Read <em>There's Always This Year</em> §1</strong> (PDF from Dr. Jan)</div>
+        <div class="gp-sub">Due tomorrow Fri 4/17 in Sports &amp; Lit · Get the PDF from Blackbaud</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">4</div>
+      <div>
+        <div class="gp-text"><strong>Start Biology Comparison Project</strong></div>
+        <div class="gp-sub">Due Tue–Wed 4/21–22 (5 days\!) · Compare cell resp vs. photosynthesis, redox, oxidative phosphorylation · Submit digitally</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">5</div>
+      <div>
+        <div class="gp-text"><strong>MVC §5.3 p.336 #1,2,3,5,6</strong></div>
+        <div class="gp-sub">Due Monday 4/20 · Double Integral Day 3 HW — get ahead this weekend</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">6</div>
+      <div>
+        <div class="gp-text"><strong>Begin MVC test prep</strong> — Double Integrals unit</div>
+        <div class="gp-sub">Tests Mon 4/27 &amp; Tue 4/28 · Review days on 4/23–24</div>
+      </div>
+    </div>
+
+    <div class="game-plan-item">
+      <div class="gp-num">7</div>
+      <div>
+        <div class="gp-text"><strong>Bio Cumulative Test review (early start)</strong></div>
+        <div class="gp-sub">Test Thu 4/30 for E/F block · NOT including Origin of Life, Ecology, or Plants · Use AP Bio Khan Academy</div>
+      </div>
+    </div>
+  </div>
+
+  <\!-- FOOTER -->
+  <div class="footer">
+    <strong>Data sources:</strong> MVC Assignment Sheet 2025-26 (Google Drive) · Honors Biology Syllabus 2025-26 (Google Drive) · Dr. Jan Sports &amp; Literature Calendar Spring 2026 (Google Drive) · Gmail (championyouthsafrica@gmail.com)<br>
+    <strong>Unavailable:</strong> Blackbaud (branson.myschoolapp.com) — SSO login required · TeamSnap (golf schedule) — login required<br>
+    Block rotation anchor: Day 1 (ABCD) = Mon Apr 13, 2026
+  </div>
+
 </div>
 </body>
 </html>

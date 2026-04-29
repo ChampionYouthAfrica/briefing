@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drew's Daily Briefing - Monday, April 27, 2026</title>
+    <title>Drew's Daily Briefing</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -42,6 +42,31 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
         h2 { color: #fff; margin-bottom: 15px; font-size: 1.8em; }
+        .meeting-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 12px 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        }
+        .meeting-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .meeting-info {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+        .meeting-when {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
         .block-card {
             background: rgba(255,255,255,0.08);
             border-left: 4px solid #3b82f6;
@@ -99,6 +124,10 @@
             background: rgba(255,255,255,0.08);
             margin: 8px 0;
             border-radius: 8px;
+        }
+        .lookahead-row.has-meeting {
+            background: rgba(245, 158, 11, 0.2);
+            border-left: 3px solid #f59e0b;
         }
         .lookahead-date { font-weight: bold; color: #60a5fa; }
         .lookahead-blocks { color: #9ca3af; font-size: 0.9em; }
@@ -160,7 +189,16 @@
         </div>
 
         <div class="warning-banner">
-            &#9888; Upcoming: Cumulative Biology Test on 4/30 (E/F) or 5/1 (A) | Sports &#38; Lit Essay due 4/29
+            &#9888; Upcoming: Cumulative Biology Test on 4/30 (E/F) or 5/1 (A) | Sports &#38; Lit Essay due 4/29 | College Counseling Meeting 4/29 at 8:00 AM
+        </div>
+
+        <div class="section">
+            <h2>&#128197; Special Events / Upcoming Meetings</h2>
+            <div class="meeting-card">
+                <div class="meeting-title">&#128197; College Counseling with Matt Lane</div>
+                <div class="meeting-info">Branson School &#8226; Outside regular block schedule</div>
+                <div class="meeting-when">Wednesday, April 29 at 8:00 AM</div>
+            </div>
         </div>
 
         <div class="section">
@@ -259,10 +297,10 @@
                 <div class="lookahead-blocks">E F G H</div>
                 <div>Biology: Review</div>
             </div>
-            <div class="lookahead-row">
+            <div class="lookahead-row has-meeting">
                 <div class="lookahead-date">Wed 4/29</div>
                 <div class="lookahead-blocks">D C B A</div>
-                <div>&#128308; Mandarin assignment due, Sports &#38; Lit essay due, Biology: Intro to Human Systems project</div>
+                <div><strong>&#128197; 8:00 AM - College Counseling with Matt Lane @ Branson</strong><br>Mandarin assignment due, Sports &#38; Lit essay due, Biology: Intro to Human Systems project</div>
             </div>
             <div class="lookahead-row">
                 <div class="lookahead-date">Thu 4/30</div>
@@ -302,16 +340,20 @@
             </div>
             <div class="game-plan-item">
                 <span class="priority-num">4</span>
-                <strong>Start reviewing for Biology Cumulative Test</strong> - Test on 5/1 for A block
+                <strong>Prep for Wednesday 8:00 AM College Counseling meeting with Matt Lane</strong> - Bring questions/topics
             </div>
             <div class="game-plan-item">
                 <span class="priority-num">5</span>
+                <strong>Start reviewing for Biology Cumulative Test</strong> - Test on 5/1 for A block
+            </div>
+            <div class="game-plan-item">
+                <span class="priority-num">6</span>
                 <strong>Work on Mandarin Apr. 27 assignment</strong> - Due 4/29
             </div>
         </div>
 
         <div class="footer">
-            <strong>Data Sources:</strong> Blackbaud (schedule VERIFIED), MVC Assignment Sheet, Biology Syllabus, Dr. Jan Sports &#38; Lit Calendar<br>
+            <strong>Data Sources:</strong> Blackbaud (schedule VERIFIED), MVC Assignment Sheet, Biology Syllabus, Dr. Jan Sports &#38; Lit Calendar, Google Calendar<br>
             Block rotation anchor: Day 1 (ABCD) = Mon Apr 13, 2026<br>
             <em>Note: MVC course concluded in January 2026. No current MVC assignments.</em><br>
             <em>Golf schedule unavailable (TeamSnap requires login)</em>

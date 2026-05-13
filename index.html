@@ -3,424 +3,432 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drew's Daily Briefing &#x2014; Tuesday, May 12, 2026</title>
+<title>Drew&#x27;s Daily Briefing &#x2014; Wednesday, May 13, 2026</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0f1117; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.5; padding: 16px; }
-  a { color: #60a5fa; }
-
-  /* Header */
-  .header { background: linear-gradient(135deg, #1e293b 0%, #0f2244 100%); border: 1px solid #334155; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .header-left h1 { font-size: 1.6rem; font-weight: 700; color: #f1f5f9; }
-  .header-left .date { color: #94a3b8; font-size: 0.95rem; margin-top: 2px; }
-  .block-badge { background: #1d4ed8; color: #fff; border-radius: 8px; padding: 8px 16px; text-align: center; }
-  .block-badge .block-order { font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; }
-  .block-badge .block-label { font-size: 0.7rem; color: #bfdbfe; margin-top: 2px; }
-  .verified-tag { background: #f59e0b; color: #000; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
-
-  /* Warning banners */
-  .warnings { margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
-  .warn { border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
-  .warn-red { background: #450a0a; border-left: 4px solid #ef4444; color: #fca5a5; }
-  .warn-orange { background: #431407; border-left: 4px solid #f97316; color: #fdba74; }
-  .warn-yellow { background: #422006; border-left: 4px solid #eab308; color: #fde047; }
-  .warn-blue { background: #0c1a3a; border-left: 4px solid #3b82f6; color: #93c5fd; }
-
-  /* Section titles */
-  .section-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin: 20px 0 8px; }
-
-  /* Special events */
-  .events-grid { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
-  .event-card { background: #1e293b; border: 1px solid #334155; border-left: 4px solid #8b5cf6; border-radius: 8px; padding: 10px 14px; display: flex; align-items: flex-start; gap: 10px; }
-  .event-card .ev-time { font-size: 0.8rem; color: #a78bfa; font-weight: 700; white-space: nowrap; min-width: 90px; }
-  .event-card .ev-title { font-weight: 600; color: #e2e8f0; font-size: 0.9rem; }
-  .event-card .ev-sub { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
-  .event-card.ap-exam { border-left-color: #ef4444; }
-  .event-card.ap-exam .ev-time { color: #fca5a5; }
-
-  /* Schedule */
-  .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 8px; }
-  .block-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 14px; }
-  .block-card.active { border-color: #3b82f6; background: #0f2244; }
-  .block-card.inactive { opacity: 0.45; }
-  .block-card .block-num { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; }
-  .block-card.active .block-num { color: #60a5fa; }
-  .block-card .class-name { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin-top: 4px; }
-  .block-card .teacher { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
-  .block-card .topic { font-size: 0.8rem; color: #60a5fa; margin-top: 6px; background: #1d2d4a; border-radius: 4px; padding: 4px 8px; }
-  .block-card .position-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; background: #1d4ed8; color: #fff; border-radius: 4px; padding: 2px 6px; margin-bottom: 4px; }
-
-  /* Homework Tracker */
-  .hw-section { background: #1e293b; border: 1px solid #334155; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
-  .hw-subject-header { background: #0f172a; padding: 10px 16px; font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: space-between; }
-  .hw-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 16px; border-top: 1px solid #1e293b; cursor: pointer; transition: background 0.15s; }
-  .hw-item:hover { background: #162032; }
-  .hw-item.done { opacity: 0.5; }
-  .hw-item.done .hw-text { text-decoration: line-through; }
-  .hw-checkbox { width: 16px; height: 16px; accent-color: #3b82f6; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-  .hw-text { font-size: 0.88rem; color: #e2e8f0; flex: 1; }
-  .due-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
-  .due-today { background: #7f1d1d; color: #fca5a5; }
-  .due-soon { background: #451a03; color: #fdba74; }
-  .due-week { background: #1e3a5f; color: #93c5fd; }
-  .due-unknown { background: #1e293b; color: #64748b; }
-
-  #btn-clear-all { font-size: 0.7rem; background: #334155; color: #94a3b8; border: none; border-radius: 4px; padding: 3px 8px; cursor: pointer; }
-  #btn-clear-all:hover { background: #475569; }
-
-  /* 7-day lookahead */
-  .lookahead { border: 1px solid #334155; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
-  .lookahead-row { display: grid; grid-template-columns: 100px 90px 1fr; gap: 0; border-top: 1px solid #1e293b; }
-  .lookahead-row:first-child { border-top: none; }
-  .lookahead-row.today { background: #0f2244; }
-  .lookahead-row.weekend { background: #0d1117; opacity: 0.5; }
-  .la-day { padding: 10px 12px; font-size: 0.82rem; font-weight: 700; color: #94a3b8; border-right: 1px solid #1e293b; display: flex; flex-direction: column; }
-  .la-day .day-name { color: #f1f5f9; }
-  .la-blocks { padding: 10px 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; color: #60a5fa; border-right: 1px solid #1e293b; display: flex; align-items: center; }
-  .la-notes { padding: 10px 12px; font-size: 0.82rem; color: #94a3b8; }
-  .la-note-item { margin-bottom: 2px; }
-  .la-note-item .pill { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin-right: 4px; }
-  .pill-red { background: #7f1d1d; color: #fca5a5; }
-  .pill-orange { background: #431407; color: #fdba74; }
-  .pill-blue { background: #1e3a5f; color: #93c5fd; }
-  .pill-purple { background: #2e1065; color: #c4b5fd; }
-  .pill-green { background: #052e16; color: #86efac; }
-
-  /* Game Plan */
-  .game-plan { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px; margin-bottom: 8px; }
-  .gp-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-  .gp-item:last-child { margin-bottom: 0; }
-  .gp-num { background: #1d4ed8; color: #fff; font-size: 0.75rem; font-weight: 800; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .gp-text { font-size: 0.88rem; color: #e2e8f0; }
-  .gp-text strong { color: #f1f5f9; }
-
-  /* Footer */
-  .footer { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 16px; font-size: 0.75rem; color: #475569; }
-  .footer a { color: #3b82f6; }
-  .no-events-note { background: #052e16; border: 1px solid #166534; border-radius: 8px; padding: 10px 14px; color: #86efac; font-size: 0.88rem; }
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff;--green:#3fb950;--yellow:#d29922;--red:#f85149;--purple:#bc8cff;--orange:#e3b341;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding:20px;}
+.container{max-width:900px;margin:0 auto;}
+h1{font-size:24px;font-weight:700;color:#fff;}
+h2{font-size:16px;font-weight:600;color:var(--accent);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em;}
+h3{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+.header{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.header-left h1{margin-bottom:4px;}
+.header-left .date{color:var(--text2);font-size:13px;}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:0.03em;}
+.badge-unverified{background:rgba(248,81,73,0.15);border:1px solid var(--red);color:var(--red);}
+.badge-day{background:rgba(88,166,255,0.15);border:1px solid var(--accent);color:var(--accent);}
+.section{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.alert-banner{border-radius:8px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;}
+.alert-red{background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.4);color:var(--red);}
+.alert-yellow{background:rgba(210,153,34,0.1);border:1px solid rgba(210,153,34,0.4);color:var(--yellow);}
+.alert-banner .icon{font-size:16px;margin-top:1px;flex-shrink:0;}
+.alert-banner .msg{flex:1;}
+.alert-banner strong{display:block;font-size:13px;margin-bottom:2px;}
+.alert-banner span{font-size:12px;opacity:0.85;}
+.schedule-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
+.block-card{background:var(--bg3);border-radius:8px;padding:12px 14px;border-left:3px solid var(--border);}
+.block-card.active{border-left-color:var(--accent);}
+.block-card.inactive{opacity:0.55;}
+.block-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
+.block-card.active .block-label{color:var(--accent);}
+.block-class{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px;}
+.block-teacher{font-size:12px;color:var(--text2);}
+.block-room{font-size:11px;color:var(--text2);margin-top:2px;}
+.block-topic{font-size:12px;color:var(--orange);margin-top:4px;font-style:italic;}
+.hw-list{list-style:none;}
+.hw-subject{margin-bottom:14px;}
+.hw-subject-header{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.hw-item{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;margin-bottom:4px;transition:background 0.15s;}
+.hw-item:hover{background:var(--bg3);}
+.hw-item.done .hw-text{text-decoration:line-through;opacity:0.5;}
+.hw-checkbox{width:15px;height:15px;accent-color:var(--green);cursor:pointer;margin-top:2px;flex-shrink:0;}
+.hw-text{flex:1;font-size:13px;}
+.due-badge{font-size:11px;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0;font-weight:600;}
+.due-today{background:rgba(248,81,73,0.15);color:var(--red);border:1px solid rgba(248,81,73,0.3);}
+.due-tomorrow{background:rgba(210,153,34,0.15);color:var(--yellow);border:1px solid rgba(210,153,34,0.3);}
+.due-soon{background:rgba(88,166,255,0.12);color:var(--accent);border:1px solid rgba(88,166,255,0.3);}
+.due-week{background:rgba(63,185,80,0.1);color:var(--green);border:1px solid rgba(63,185,80,0.3);}
+.hw-critical{background:rgba(248,81,73,0.05);border:1px solid rgba(248,81,73,0.2);}
+.btn{display:inline-block;padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text);transition:all 0.15s;}
+.btn:hover{background:var(--border);color:#fff;}
+.lookahead-table{width:100%;border-collapse:collapse;}
+.lookahead-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text2);padding:6px 10px;border-bottom:1px solid var(--border);}
+.lookahead-table td{padding:8px 10px;border-bottom:1px solid rgba(48,54,61,0.5);font-size:12px;vertical-align:top;}
+.lookahead-table tr:last-child td{border-bottom:none;}
+.lookahead-table tr.today-row td{background:rgba(88,166,255,0.05);}
+.lookahead-table tr.weekend-row td{color:var(--text2);}
+.tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-right:3px;white-space:nowrap;}
+.tag-quiz{background:rgba(248,81,73,0.2);color:var(--red);}
+.tag-project{background:rgba(188,140,255,0.2);color:var(--purple);}
+.tag-fab{background:rgba(63,185,80,0.2);color:var(--green);}
+.tag-noclass{background:rgba(139,148,158,0.2);color:var(--text2);}
+.tag-meet{background:rgba(227,179,65,0.2);color:var(--orange);}
+.game-plan{counter-reset:gp;}
+.game-plan-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.game-plan-item:last-child{border-bottom:none;}
+.gp-num{background:var(--accent);color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.gp-num.urgent{background:var(--red);}
+.gp-text{flex:1;}
+.gp-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px;}
+.gp-sub{font-size:12px;color:var(--text2);}
+.footer{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-top:8px;font-size:11px;color:var(--text2);}
+.footer h3{font-size:12px;color:var(--text);margin-bottom:6px;}
+.footer ul{list-style:none;padding:0;}
+.footer ul li{margin-bottom:3px;}
+.footer ul li::before{content:"&#x2022; ";color:var(--accent);}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.row-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
 </style>
 </head>
 <body>
+<div class="container">
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <div class="header">
   <div class="header-left">
-    <h1>&#x1F4DA; Drew's Daily Briefing</h1>
-    <div class="date">Tuesday, May 12, 2026 &nbsp;&#x2014;&nbsp; Branson School, Class of 2027</div>
+    <h1>&#x1F4DA; Drew&#x27;s Daily Briefing</h1>
+    <div class="date">Wednesday, May 13, 2026 &nbsp;|&nbsp; Branson School, Class of 2027</div>
   </div>
-  <div class="block-badge">
-    <div class="block-order">E &nbsp; F &nbsp; G &nbsp; H</div>
-    <div class="block-label">TODAY'S BLOCK ORDER <span class="verified-tag">MVC DOC</span></div>
+  <div>
+    <span class="badge badge-day">Day 5 &mdash; B A D C</span>
+    &nbsp;
+    <span class="badge badge-unverified">&#x26A0; SCHEDULE UNVERIFIED</span>
   </div>
 </div>
 
-<!-- ===== WARNING BANNERS ===== -->
-<div class="section-title">&#x26A0; Alerts &amp; Deadlines</div>
-<div class="warnings">
-  <div class="warn warn-red">&#x1F6A8; BIOLOGY HUMAN SYSTEM PROJECT DUE Monday 5/18 &#x2014; 6 DAYS! Submit online.</div>
-  <div class="warn warn-red">&#x1F4DD; TODAY: Biology Oral Quiz in E Block &#x2014; be ready to present your Human System Project!</div>
-  <div class="warn warn-orange">&#x23F0; AP English Language &amp; Composition Exam &#x2014; THURSDAY 5/14, 8am at World Ready. Arrive by 7:45am!</div>
-  <div class="warn warn-orange">&#x1F4DD; MVC Group Quiz Day 1 &#x2014; Wednesday 5/13 (ABCD day) AND Thursday 5/14 (HGFE day)</div>
-  <div class="warn warn-yellow">&#x26A0; Sports &amp; Lit Final Project Draft &#x2014; Was due 5/11 (yesterday). Confirm status with Dr. Jan.</div>
-</div>
-
-<!-- ===== SPECIAL EVENTS ===== -->
-<div class="section-title">&#x1F4C5; This Week's Special Events</div>
-<div class="events-grid">
-  <div class="no-events-note">&#x2705; Tuesday 5/12 (today): No special meetings &#x2014; regular class day.</div>
-  <div class="event-card">
-    <div class="ev-time">Wed 5/13<br>12:00&#x2013;12:30pm</div>
-    <div>
-      <div class="ev-title">&#x1F37D; Alumni Ambassador Lunch w/ Sophie Hays</div>
-      <div class="ev-sub">Location: Commons Picnic Tables</div>
+<!-- ALERT BANNERS -->
+<div class="section" style="padding:14px 18px;">
+  <h2>&#x1F6A8; Upcoming Alerts</h2>
+  <div class="alert-banner alert-red">
+    <div class="icon">&#x1F4DD;</div>
+    <div class="msg">
+      <strong>MVC GROUP QUIZ DAY 1 &mdash; TOMORROW (Thu 5/14)</strong>
+      <span>F Block meets Thu. Topics: Line Integrals (Sec 6.1) + Green&#x27;s Theorem (Sec 6.2). Review your HW from pages 426&ndash;436.</span>
     </div>
   </div>
-  <div class="event-card">
-    <div class="ev-time">Wed 5/13<br>12:30&#x2013;1:30pm</div>
-    <div>
-      <div class="ev-title">&#x1F91D; Drew &#x2013; Josiah &#x2013; JuanCarlos Meeting</div>
-      <div class="ev-sub">Organizer: JuanCarlos Arauz &nbsp;&#x2022;&nbsp; 3 guests</div>
+  <div class="alert-banner alert-red">
+    <div class="icon">&#x1F9EC;</div>
+    <div class="msg">
+      <strong>Biology Human System Project DUE &mdash; Mon 5/18</strong>
+      <span>Project presentations begin Monday. Submit project online (link in syllabus). Oral Quiz was yesterday; finalize and polish today/tomorrow.</span>
     </div>
   </div>
-  <div class="event-card ap-exam">
-    <div class="ev-time">Thu 5/14<br>8am&#x2013;12pm</div>
-    <div>
-      <div class="ev-title">&#x1F6A8; AP English Language &amp; Composition Exam (Bluebook Digital)</div>
-      <div class="ev-sub">Location: World Ready &nbsp;&#x2022;&nbsp; ARRIVE BY 7:45AM!</div>
+  <div class="alert-banner alert-yellow">
+    <div class="icon">&#x1F4D0;</div>
+    <div class="msg">
+      <strong>MVC Group Quiz Day 2 &mdash; Mon 5/18</strong>
+      <span>F Block meets again Monday for Group Quiz Day 2. Two quiz sessions back-to-back with Bio presentations.</span>
+    </div>
+  </div>
+  <div class="alert-banner alert-yellow">
+    <div class="icon">&#x1F4C5;</div>
+    <div class="msg">
+      <strong>Fri 5/15 &mdash; FAB Day (No MVC)</strong>
+      <span>MVC has &quot;No class Fab Day&quot; on Friday per teacher&#x27;s doc. Good recovery time before weekend.</span>
     </div>
   </div>
 </div>
 
-<!-- ===== TODAY'S SCHEDULE ===== -->
-<div class="section-title">&#x1F4CB; Today's Schedule &#x2014; E, F, G, H</div>
-<div class="schedule-grid">
-
-  <div class="block-card active">
-    <div class="position-badge">1st Period</div>
-    <div class="block-num">E Block</div>
-    <div class="class-name">Biology Honors</div>
-    <div class="teacher">&#x1F9EC; Honors Bio</div>
-    <div class="topic">&#x1F6A8; Oral Quiz: Human System Project presentation</div>
-  </div>
-
-  <div class="block-card active">
-    <div class="position-badge">2nd Period</div>
-    <div class="block-num">F Block</div>
-    <div class="class-name">Multivariable Calculus</div>
-    <div class="teacher">&#x1F4D0; Dr. Xiang</div>
-    <div class="topic">Sec 6.2 Green's Theorem + Course Evaluation</div>
-  </div>
-
-  <div class="block-card active">
-    <div class="position-badge">3rd Period</div>
-    <div class="block-num">G Block</div>
-    <div class="class-name">Digital Music</div>
-    <div class="teacher">&#x1F3B5; Music</div>
-    <div class="topic">&#x2014;</div>
-  </div>
-
-  <div class="block-card active">
-    <div class="position-badge">4th Period</div>
-    <div class="block-num">H Block</div>
-    <div class="class-name">Moral Philosophy</div>
-    <div class="teacher">&#x1F9D0; Philosophy</div>
-    <div class="topic">Check Blackbaud for assignment</div>
-  </div>
-
-  <div class="block-card inactive">
-    <div class="block-num">A Block &#x2014; Not Meeting</div>
-    <div class="class-name">Sports &amp; Literature</div>
-    <div class="teacher">Dr. Jan &#x2022; New Oaks NO 4</div>
-  </div>
-
-  <div class="block-card inactive">
-    <div class="block-num">B Block &#x2014; Not Meeting</div>
-    <div class="class-name">Mandarin V</div>
-    <div class="teacher">Shujun Xiang &#x2022; Richardson Hall RH 2</div>
-  </div>
-
-  <div class="block-card inactive">
-    <div class="block-num">C Block &#x2014; Not Meeting</div>
-    <div class="class-name">College Counselling</div>
-    <div class="teacher"></div>
-  </div>
-
-  <div class="block-card inactive">
-    <div class="block-num">D Block &#x2014; Not Meeting</div>
-    <div class="class-name">Free Block (Open)</div>
-    <div class="teacher"></div>
-  </div>
-
-</div>
-
-<!-- ===== HOMEWORK TRACKER ===== -->
-<div class="section-title">&#x2705; Homework Tracker &nbsp;<button id="btn-clear-all">Uncheck All</button></div>
-
-<!-- MVC -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F4D0; MVC &#x2014; Multivariable Calculus (F Block)</div>
-  <div class="hw-item" data-id="mvc-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Sec 6.2 Green's Theorem &#x2014; HW Page 436: #1, 2, 4, 7</div>
-    <span class="due-badge due-today">Due today</span>
-  </div>
-  <div class="hw-item" data-id="mvc-2">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Group Quiz Day 1 &#x2014; prep for Wed 5/13 AND Thu 5/14 (covers recent material)</div>
-    <span class="due-badge due-soon">5/13 &amp; 5/14</span>
-  </div>
-  <div class="hw-item" data-id="mvc-3">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Complete course evaluation in class today (F Block)</div>
-    <span class="due-badge due-today">In class</span>
-  </div>
-</div>
-
-<!-- Biology -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F9EC; Biology Honors (E Block)</div>
-  <div class="hw-item" data-id="bio-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">&#x1F6A8; Oral Quiz: Present Human System Project in class today (E Block) &#x2014; be ready!</div>
-    <span class="due-badge due-today">TODAY</span>
-  </div>
-  <div class="hw-item" data-id="bio-2">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Continue working on Human System Project (finish by 5/13&#x2013;5/14)</div>
-    <span class="due-badge due-soon">5/13&#x2013;14</span>
-  </div>
-  <div class="hw-item" data-id="bio-3">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">&#x1F525; SUBMIT Human System Project online by Monday 5/18 &#x2014; submit link in syllabus</div>
-    <span class="due-badge due-soon">DUE 5/18</span>
-  </div>
-</div>
-
-<!-- Sports & Lit -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F4D6; Sports &amp; Literature (A Block &#x2014; Dr. Jan)</div>
-  <div class="hw-item" data-id="sl-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">&#x26A0; Final Project Draft &#x2014; was due Monday 5/11. Confirm status with Dr. Jan today!</div>
-    <span class="due-badge due-today">Check now</span>
-  </div>
-  <div class="hw-item" data-id="sl-2">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Continue working on final project (peer workshops happened Wed/Mon in class)</div>
-    <span class="due-badge due-week">Ongoing</span>
-  </div>
-</div>
-
-<!-- Mandarin -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F1E8;&#x1F1F3; Mandarin V (B Block &#x2014; Shujun Xiang)</div>
-  <div class="hw-item" data-id="mand-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Check Blackbaud Assignment Center for current Mandarin V assignments (unavailable in this run)</div>
-    <span class="due-badge due-unknown">Check BB</span>
-  </div>
-</div>
-
-<!-- Moral Philosophy -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F9D0; Moral Philosophy (H Block)</div>
-  <div class="hw-item" data-id="phil-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">Check Blackbaud Assignment Center for Moral Philosophy assignments (unavailable in this run)</div>
-    <span class="due-badge due-unknown">Check BB</span>
-  </div>
-</div>
-
-<!-- Digital Music -->
-<div class="hw-section" style="margin-bottom:10px;">
-  <div class="hw-subject-header">&#x1F3B5; Digital Music (G Block)</div>
-  <div class="hw-item" data-id="mus-1">
-    <input type="checkbox" class="hw-checkbox">
-    <div class="hw-text">No syllabus available &#x2014; check with teacher or Blackbaud for assignments</div>
-    <span class="due-badge due-unknown">Check BB</span>
-  </div>
-</div>
-
-<!-- ===== 7-DAY LOOKAHEAD ===== -->
-<div class="section-title">&#x1F4C5; 7-Day Lookahead</div>
-<div class="lookahead">
-
-  <div class="lookahead-row today">
-    <div class="la-day"><span class="day-name">TUE 5/12</span><span style="color:#3b82f6;font-size:0.7rem;">TODAY</span></div>
-    <div class="la-blocks">E F G H</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-red">NOW</span> Biology Oral Quiz &#x2014; Human System Project</div>
-      <div class="la-note-item"><span class="pill pill-blue">MVC</span> Sec 6.2 HW: Page 436 #1,2,4,7 + Course Eval</div>
-      <div class="la-note-item"><span class="pill pill-purple">PHIL</span> Moral Philosophy &#x2014; check Blackbaud</div>
+<!-- TODAY'S SCHEDULE -->
+<div class="section">
+  <h2>&#x1F4C5; Today&#x27;s Schedule &mdash; B A D C</h2>
+  <div class="schedule-grid">
+    <div class="block-card active">
+      <div class="block-label">1st &mdash; B Block</div>
+      <div class="block-class">Mandarin V</div>
+      <div class="block-teacher">Shujun Xiang</div>
+      <div class="block-room">Richardson Hall RH 2</div>
+    </div>
+    <div class="block-card active">
+      <div class="block-label">2nd &mdash; A Block</div>
+      <div class="block-class">Sports &amp; Literature</div>
+      <div class="block-teacher">Dr. Jan</div>
+      <div class="block-room">New Oaks NO 4</div>
+    </div>
+    <div class="block-card active">
+      <div class="block-label">3rd &mdash; D Block</div>
+      <div class="block-class">Free Block</div>
+      <div class="block-teacher">Open Block</div>
+      <div class="block-room">&#x2014;</div>
+      <div class="block-topic">Use wisely &mdash; MVC quiz tomorrow!</div>
+    </div>
+    <div class="block-card active">
+      <div class="block-label">4th &mdash; C Block</div>
+      <div class="block-class">College Counselling</div>
+      <div class="block-teacher">Counselor</div>
+      <div class="block-room">&#x2014;</div>
+    </div>
+    <div class="block-card inactive">
+      <div class="block-label">Not Today &mdash; E Block</div>
+      <div class="block-class">Biology Honors</div>
+      <div class="block-teacher">&#x2014;</div>
+      <div class="block-room">Meets Thu (HGFE)</div>
+    </div>
+    <div class="block-card inactive">
+      <div class="block-label">Not Today &mdash; F Block</div>
+      <div class="block-class">MVC</div>
+      <div class="block-teacher">Dr. Xiang</div>
+      <div class="block-room">Meets Thu (HGFE)</div>
+    </div>
+    <div class="block-card inactive">
+      <div class="block-label">Not Today &mdash; G Block</div>
+      <div class="block-class">Digital Music</div>
+      <div class="block-teacher">&#x2014;</div>
+      <div class="block-room">Meets Thu (HGFE)</div>
+    </div>
+    <div class="block-card inactive">
+      <div class="block-label">Not Today &mdash; H Block</div>
+      <div class="block-class">Moral Philosophy</div>
+      <div class="block-teacher">&#x2014;</div>
+      <div class="block-room">Meets Thu (HGFE)</div>
     </div>
   </div>
-
-  <div class="lookahead-row">
-    <div class="la-day"><span class="day-name">WED 5/13</span></div>
-    <div class="la-blocks">A B C D</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-orange">QUIZ</span> MVC Group Quiz Day 1 (A Block day for MVC)</div>
-      <div class="la-note-item"><span class="pill pill-blue">S&amp;L</span> Sports &amp; Lit Final Projects + Peer Workshop (A Block)</div>
-      <div class="la-note-item"><span class="pill pill-purple">12pm</span> Alumni Ambassador Lunch w/ Sophie &#x2014; Commons Picnic Tables</div>
-      <div class="la-note-item"><span class="pill pill-purple">12:30pm</span> Drew&#x2013;Josiah&#x2013;JuanCarlos meeting (until 1:30pm)</div>
-    </div>
-  </div>
-
-  <div class="lookahead-row">
-    <div class="la-day"><span class="day-name">THU 5/14</span></div>
-    <div class="la-blocks">H G F E</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-red">8am</span> &#x1F6A8; AP English Lang &amp; Comp Exam &#x2014; World Ready. ARRIVE 7:45am!</div>
-      <div class="la-note-item"><span class="pill pill-orange">QUIZ</span> MVC Group Quiz Day 1 + Course Eval (F Block / HGFE day)</div>
-      <div class="la-note-item"><span class="pill pill-blue">BIO</span> Biology: Finish Human System Project</div>
-    </div>
-  </div>
-
-  <div class="lookahead-row">
-    <div class="la-day"><span class="day-name">FRI 5/15</span></div>
-    <div class="la-blocks">D C B A</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-blue">S&amp;L</span> Sports &amp; Lit Final Projects (A Block)</div>
-      <div class="la-note-item"><span class="pill pill-green">FAB</span> Fab Day &#x2014; No MVC class today</div>
-      <div class="la-note-item"><span class="pill pill-blue">MAND</span> Mandarin V (B Block)</div>
-    </div>
-  </div>
-
-  <div class="lookahead-row weekend">
-    <div class="la-day"><span class="day-name">SAT&#x2013;SUN</span></div>
-    <div class="la-blocks">&#x2014;</div>
-    <div class="la-notes">
-      <div class="la-note-item">Weekend &#x2014; Finish and polish Biology Human System Project</div>
-    </div>
-  </div>
-
-  <div class="lookahead-row">
-    <div class="la-day"><span class="day-name">MON 5/18</span></div>
-    <div class="la-blocks">F E H G</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-red">DUE</span> &#x1F525; BIOLOGY PROJECT DUE &#x2014; Submit online (link in syllabus)!</div>
-      <div class="la-note-item"><span class="pill pill-orange">PRES</span> Sports &amp; Lit Project Presentations begin</div>
-      <div class="la-note-item"><span class="pill pill-orange">QUIZ</span> MVC Group Quiz Day 2</div>
-    </div>
-  </div>
-
-  <div class="lookahead-row">
-    <div class="la-day"><span class="day-name">TUE 5/19</span></div>
-    <div class="la-blocks">B A D C</div>
-    <div class="la-notes">
-      <div class="la-note-item"><span class="pill pill-blue">S&amp;L</span> Sports &amp; Lit Project Presentations (A Block)</div>
-      <div class="la-note-item"><span class="pill pill-orange">QUIZ</span> MVC Group Quiz Day 2 (ABCD day)</div>
-      <div class="la-note-item"><span class="pill pill-blue">BIO</span> Biology Project Presentations</div>
-    </div>
-  </div>
-
 </div>
 
-<!-- ===== GAME PLAN ===== -->
-<div class="section-title">&#x1F3AF; Today's Game Plan</div>
-<div class="game-plan">
-  <div class="gp-item">
-    <div class="gp-num">1</div>
-    <div class="gp-text"><strong>&#x1F6A8; E Block: Biology Oral Quiz</strong> &#x2014; Be ready to present your Human System Project. Know YOUR system's oral quiz questions cold.</div>
+<!-- HOMEWORK TRACKER -->
+<div class="section">
+  <div class="row-flex">
+    <h2 style="margin-bottom:0;">&#x2705; Homework Tracker</h2>
+    <button class="btn" id="btn-clear-all">Uncheck All</button>
   </div>
-  <div class="gp-item">
-    <div class="gp-num">2</div>
-    <div class="gp-text"><strong>&#x1F4D0; F Block: MVC</strong> &#x2014; Complete course evaluation. Confirm HW Page 436 #1,2,4,7 is done. Note: Group Quiz coming Wed + Thu.</div>
+
+  <!-- MVC -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">F Block &mdash; MVC (Multivariable Calculus)</div>
+    <ul class="hw-list">
+      <li class="hw-item hw-critical" data-id="mvc-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">&#x1F6A8; <strong>STUDY for Group Quiz Day 1</strong> &mdash; Sec 6.1 Line Integrals (pg 426&#x2013;427) + Sec 6.2 Green&#x27;s Theorem (pg 436)</span>
+        <span class="due-badge due-tomorrow">QUIZ TOMORROW</span>
+      </li>
+      <li class="hw-item" data-id="mvc-2">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Review Sec 6.1 HW: pg 426 #6, 7, 14, 15, 17; pg 427 #24, 25, 30, 31</span>
+        <span class="due-badge due-tomorrow">Before Thu</span>
+      </li>
+      <li class="hw-item" data-id="mvc-3">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Review Sec 6.2 HW: pg 436 #1, 2, 4, 7</span>
+        <span class="due-badge due-tomorrow">Before Thu</span>
+      </li>
+      <li class="hw-item" data-id="mvc-4">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Complete Course Evaluation (forms.gle link in MVC doc)</span>
+        <span class="due-badge due-soon">This week</span>
+      </li>
+    </ul>
   </div>
-  <div class="gp-item">
-    <div class="gp-num">3</div>
-    <div class="gp-text"><strong>&#x26A0; Check on Sports &amp; Lit Draft</strong> &#x2014; Draft was due yesterday (5/11). Email or message Dr. Jan to confirm it was received / what comes next.</div>
+
+  <!-- Biology -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">E Block &mdash; Biology Honors</div>
+    <ul class="hw-list">
+      <li class="hw-item hw-critical" data-id="bio-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">&#x1F9EC; <strong>Finish Human System Project</strong> &mdash; Thursday class is &quot;Finish project&quot; day; presentations start Mon 5/18</span>
+        <span class="due-badge due-tomorrow">Finish by Thu</span>
+      </li>
+      <li class="hw-item hw-critical" data-id="bio-2">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Submit project online (submit link in Bio syllabus &#x2014; due before Mon 5/18 presentations)</span>
+        <span class="due-badge due-soon">Due Mon 5/18</span>
+      </li>
+      <li class="hw-item" data-id="bio-3">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Review Oral Quiz questions list (only need to know YOUR body system)</span>
+        <span class="due-badge due-week">Ongoing</span>
+      </li>
+    </ul>
   </div>
-  <div class="gp-item">
-    <div class="gp-num">4</div>
-    <div class="gp-text"><strong>&#x23F0; Prep for Thursday AP Exam</strong> &#x2014; AP English Lang &amp; Comp, 8am at World Ready. Set alarm. Arrive by 7:45am. Bring Bluebook-ready device.</div>
+
+  <!-- Sports & Lit -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">A Block &mdash; Sports &amp; Literature (Dr. Jan)</div>
+    <ul class="hw-list">
+      <li class="hw-item" data-id="slit-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Check Dr. Jan&#x27;s Spring 2026 calendar for current assignment (syllabus doc was unavailable today)</span>
+        <span class="due-badge due-today">Check in class</span>
+      </li>
+    </ul>
   </div>
-  <div class="gp-item">
-    <div class="gp-num">5</div>
-    <div class="gp-text"><strong>&#x1F525; Biology Project</strong> &#x2014; Finish and polish this week. Due Monday 5/18. After the oral quiz today, use free time to write up remaining sections and prepare to submit online.</div>
+
+  <!-- Mandarin -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">B Block &mdash; Mandarin V (Shujun Xiang)</div>
+    <ul class="hw-list">
+      <li class="hw-item" data-id="mand-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Blackbaud assignments unavailable (browser not connected). Check Blackbaud Assignment Center for Mandarin V work.</span>
+        <span class="due-badge due-today">Verify today</span>
+      </li>
+    </ul>
   </div>
-  <div class="gp-item">
-    <div class="gp-num">6</div>
-    <div class="gp-text"><strong>&#x1F9D0; Check Blackbaud</strong> &#x2014; Grab Mandarin V and Moral Philosophy assignments from the Assignment Center (login required &#x2014; not available in this automated run).</div>
+
+  <!-- Moral Philosophy -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">H Block &mdash; Moral Philosophy</div>
+    <ul class="hw-list">
+      <li class="hw-item" data-id="phil-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">Blackbaud assignments unavailable. Check Blackbaud Assignment Center for Moral Philosophy work.</span>
+        <span class="due-badge due-week">Verify on Blackbaud</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Digital Music -->
+  <div class="hw-subject">
+    <div class="hw-subject-header">G Block &mdash; Digital Music</div>
+    <ul class="hw-list">
+      <li class="hw-item" data-id="dmus-1">
+        <input type="checkbox" class="hw-checkbox">
+        <span class="hw-text">No syllabus data available. Check with teacher for any current assignments.</span>
+        <span class="due-badge due-week">Verify</span>
+      </li>
+    </ul>
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+<!-- 7-DAY LOOKAHEAD -->
+<div class="section">
+  <h2>&#x1F4C6; 7-Day Lookahead</h2>
+  <table class="lookahead-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Day / Blocks</th>
+        <th>Key Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="today-row">
+        <td><strong>Wed 5/13</strong><br><small>Today</small></td>
+        <td>Day 5<br><strong>B A D C</strong></td>
+        <td>Mandarin, Sports&amp;Lit, Free (study MVC!), College Counseling</td>
+      </tr>
+      <tr>
+        <td><strong>Thu 5/14</strong></td>
+        <td>Day 6<br><strong>H G F E</strong></td>
+        <td>
+          <span class="tag tag-quiz">MVC Group Quiz Day 1</span>
+          <span class="tag tag-project">Bio: Finish Project</span>
+          Moral Phil, Digital Music
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Fri 5/15</strong></td>
+        <td>Day 1<br><strong>A B C D</strong></td>
+        <td>
+          <span class="tag tag-fab">FAB Day</span>
+          Sports&amp;Lit, Mandarin, College Counseling, Free &mdash; <span class="tag tag-noclass">No MVC</span>
+        </td>
+      </tr>
+      <tr class="weekend-row">
+        <td>Sat 5/16</td>
+        <td colspan="2"><em>Weekend</em></td>
+      </tr>
+      <tr class="weekend-row">
+        <td>Sun 5/17</td>
+        <td colspan="2"><em>Weekend</em></td>
+      </tr>
+      <tr>
+        <td><strong>Mon 5/18</strong></td>
+        <td>Day 2<br><strong>H G F E</strong></td>
+        <td>
+          <span class="tag tag-quiz">MVC Group Quiz Day 2</span>
+          <span class="tag tag-project">Bio Presentations &#x2014; PROJECT DUE</span>
+          Moral Phil, Digital Music
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Tue 5/19</strong></td>
+        <td>Day 3<br><strong>D C B A</strong></td>
+        <td>
+          <span class="tag tag-quiz">MVC Quiz Day 2 (for others)</span>
+          Sports&amp;Lit, Mandarin, College Counseling, Free
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Wed 5/20</strong></td>
+        <td>Day 4<br><strong>F E H G</strong></td>
+        <td>
+          MVC: Watch Math Video / Optional Math Talk &mdash;
+          <span class="tag tag-project">Bio Presentations continue</span>
+          Moral Phil, Digital Music
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- GAME PLAN -->
+<div class="section">
+  <h2>&#x1F3AF; Game Plan &mdash; Priority Actions</h2>
+  <div class="game-plan">
+    <div class="game-plan-item">
+      <div class="gp-num urgent">1</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F6A8; Study for MVC Group Quiz Day 1 (TONIGHT)</div>
+        <div class="gp-sub">Quiz is TOMORROW in F Block. Review Line Integrals (Sec 6.1, pg 426&#x2013;427) and Green&#x27;s Theorem (Sec 6.2, pg 436). Go over all HW problems from those sections. Use your Free Block (D block) today to start.</div>
+      </div>
+    </div>
+    <div class="game-plan-item">
+      <div class="gp-num urgent">2</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F9EC; Finalize Human System Project</div>
+        <div class="gp-sub">Thursday (tomorrow) is &quot;Finish project&quot; day in Bio. Presentations start Monday 5/18 &mdash; project must be submitted online by then. Polish your presentation and submit before Monday.</div>
+      </div>
+    </div>
+    <div class="game-plan-item">
+      <div class="gp-num">3</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F4F1; Check Blackbaud for Mandarin + Moral Phil assignments</div>
+        <div class="gp-sub">Today&#x27;s automated briefing could not access Blackbaud (browser unavailable). Log in at branson.myschoolapp.com/app/student#assignmentcenter to check B Block (Mandarin) and H Block (Moral Phil) for any outstanding work.</div>
+      </div>
+    </div>
+    <div class="game-plan-item">
+      <div class="gp-num">4</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F4DD; Confirm Sports &amp; Lit assignment with Dr. Jan</div>
+        <div class="gp-sub">The Spring 2026 calendar Google Doc returned no content today. Ask Dr. Jan in class or check manually what&#x27;s due for A Block.</div>
+      </div>
+    </div>
+    <div class="game-plan-item">
+      <div class="gp-num">5</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F4DD; Complete MVC Course Evaluation</div>
+        <div class="gp-sub">The MVC doc includes a course evaluation link (forms.gle) for this week. Fill it out when you have a moment.</div>
+      </div>
+    </div>
+    <div class="game-plan-item">
+      <div class="gp-num">6</div>
+      <div class="gp-text">
+        <div class="gp-title">&#x1F3CC; Check TeamSnap for Golf schedule</div>
+        <div class="gp-sub">Golf (Boys Varsity, home at Peacock Gap) &#x2014; TeamSnap login required, not available in automated run. Check go.teamsnap.com for any upcoming matches or practice.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <div class="footer">
-  <strong>&#x1F4E1; Data Sources</strong><br>
-  &#x2022; Block order: MVC Assignment Sheet 2025&#x2013;26 (Google Doc) &#x2014; <strong>VERIFIED: E, F, G, H for Tuesday 5/12</strong><br>
-  &#x2022; MVC assignments: MVC Assignment Sheet Google Doc<br>
-  &#x2022; Biology: Honors Biology Syllabus 2025&#x2013;26 Google Doc<br>
-  &#x2022; Sports &amp; Lit: Dr. Jan Spring 2026 Calendar Google Doc<br>
-  &#x2022; Special events: Google Calendar (Branson School account)<br>
-  &#x2022; Gmail: No new emails from Branson teachers in last 5 days<br>
-  <br>
-  <strong>&#x274C; Unavailable This Run</strong><br>
-  &#x2022; Blackbaud (branson.myschoolapp.com) &#x2014; Google OAuth flow did not complete; Mandarin V and Moral Philosophy assignments unknown<br>
-  &#x2022; Golf schedule (TeamSnap) &#x2014; requires manual login<br>
-  <br>
-  <strong>&#x1F4CC; Block Rotation Anchor:</strong> Day 1 (A,B,C,D) = Mon Apr 13, 2026 | MVC doc confirms today (Tue 5/12) = <strong>E, F, G, H</strong><br>
-  <strong>Live briefing:</strong> <a href="https://championyouthafrica.github.io/briefing/" target="_blank">championyouthafrica.github.io/briefing/</a>
+  <h3>Data Sources &amp; Notes</h3>
+  <ul>
+    <li>Schedule: <strong>UNVERIFIED</strong> &#x2014; Blackbaud unavailable (Chrome not connected during automated run). Using MVC teacher&#x27;s doc + 6-day calculated rotation (Anchor: Day 1 = Mon Apr 13, 2026).</li>
+    <li>MVC: <a href="https://docs.google.com/document/d/13q2hUI1Pw952ZhJtE3ceb11-YnTxFMys5ZFRJyt6WeA/mobilebasic" target="_blank">Assignment Sheet 2025&#x2013;26</a> &#x2014; Week 33 data (5/11&#x2013;5/15) and Week 34 (5/18&#x2013;5/22) retrieved successfully.</li>
+    <li>Biology: <a href="https://docs.google.com/document/d/1-OoZPLBMV6jRtWBwykP3PPfpBX0GsyFkWIyrMBPI9mA/mobilebasic" target="_blank">Honors Biology Syllabus</a> &#x2014; May dates retrieved successfully.</li>
+    <li>Sports &amp; Lit: Google Doc returned empty content &#x2014; unavailable today.</li>
+    <li>Mandarin V / Moral Philosophy: Blackbaud unavailable.</li>
+    <li>Gmail (personal): No emails from Branson teachers found in last 5 days.</li>
+    <li>Golf (TeamSnap): Login required &#x2014; unavailable in automated run.</li>
+    <li>Live briefing: <a href="https://championyouthafrica.github.io/briefing/" target="_blank">championyouthafrica.github.io/briefing/</a></li>
+    <li>Block rotation anchor: Day 1 (ABCD) = Mon Apr 13, 2026. Today = Day 5 (BADC).</li>
+  </ul>
+</div>
+
 </div>
 
 <script>
@@ -460,6 +468,5 @@
   }
 })();
 </script>
-
 </body>
 </html>

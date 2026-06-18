@@ -3,336 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drew's Daily Briefing -- Tuesday, May 19, 2026</title>
+<title>Drew's Daily Briefing</title>
 <style>
-  :root {
-    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3250;
-    --text: #e2e8f0; --muted: #8892b0; --accent: #7c3aed; --accent-light: #a78bfa;
-    --green: #10b981; --yellow: #f59e0b; --red: #ef4444; --blue: #3b82f6;
+  :root{
+    --bg:#0f1419; --panel:#1a212b; --panel2:#222b38; --line:#2d3947;
+    --txt:#e6edf3; --muted:#9aa7b4; --accent:#4da3ff; --green:#3fb950;
+    --amber:#d29922; --red:#f85149;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.6; padding: 0 0 60px 0; }
-  .header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 2px solid var(--border); padding: 28px 32px 22px; }
-  .header h1 { font-size: 26px; font-weight: 800; color: #fff; }
-  .header .date { color: var(--muted); font-size: 15px; margin-top: 4px; }
-  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
-  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; }
-  .badge-day { background: var(--accent); color: #fff; }
-  .badge-warn { background: #78350f; color: #fcd34d; border: 1px solid #92400e; }
-  .badge-blocks { background: var(--surface2); color: var(--accent-light); border: 1px solid var(--border); font-size: 14px; padding: 6px 16px; border-radius: 10px; font-weight: 600; letter-spacing: 1px; }
-  .banner { padding: 12px 32px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
-  .banner-warn { background: #1c1408; border-bottom: 1px solid #78350f; color: #fcd34d; }
-  .banner-info { background: #0c1a2e; border-bottom: 1px solid #1e3a5f; color: #93c5fd; }
-  .section { padding: 28px 32px; border-bottom: 1px solid var(--border); }
-  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
-  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .st-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-  .st-row .section-title { margin-bottom: 0; }
-  .schedule-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
-  .block-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; position: relative; overflow: hidden; }
-  .block-card.active { border-color: var(--accent); background: #1a1030; }
-  .block-card.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
-  .block-card.inactive { opacity: 0.5; }
-  .block-label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 6px; }
-  .block-class { font-size: 16px; font-weight: 700; }
-  .block-teacher { font-size: 13px; color: var(--muted); margin-top: 3px; }
-  .block-room { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .block-topic { margin-top: 8px; font-size: 13px; color: #c4b5fd; background: #1e1040; border-radius: 6px; padding: 5px 10px; display: inline-block; }
-  .pos-tag { position: absolute; top: 12px; right: 12px; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
-  .pos-1 { background: #064e3b; color: #6ee7b7; }
-  .pos-2 { background: #1e3a5f; color: #93c5fd; }
-  .pos-3 { background: #3b1f00; color: #fbbf24; }
-  .pos-4 { background: #2d1515; color: #f87171; }
-  .hw-subject { margin-bottom: 22px; }
-  .hw-subject-title { font-size: 14px; font-weight: 700; color: var(--accent-light); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .hw-subject-title span { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 8px; }
-  .meets-today { background: #064e3b; color: #6ee7b7; }
-  .no-meet { background: #1a1d27; color: #8892b0; border: 1px solid #2e3250; }
-  .hw-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
-  .hw-item:hover { border-color: var(--accent); }
-  .hw-item.done { opacity: 0.4; }
-  .hw-item.done .hw-text { text-decoration: line-through; }
-  .hw-checkbox { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-  .hw-text { font-size: 14px; flex: 1; }
-  .due-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; flex-shrink: 0; white-space: nowrap; }
-  .due-today { background: #7f1d1d; color: #fca5a5; }
-  .due-soon { background: #78350f; color: #fcd34d; }
-  .due-later { background: #1e3a5f; color: #93c5fd; }
-  .due-na { background: #1a1d27; color: #8892b0; border: 1px solid #2e3250; }
-  .hw-note { font-size: 13px; color: var(--muted); font-style: italic; padding: 8px 14px; background: var(--surface); border-radius: 8px; border: 1px dashed var(--border); margin-bottom: 8px; }
-  .clear-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 13px; padding: 6px 14px; border-radius: 8px; cursor: pointer; }
-  .clear-btn:hover { border-color: var(--accent); color: var(--accent-light); }
-  .lookahead-table { width: 100%; border-collapse: collapse; }
-  .lookahead-table th { text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--border); }
-  .lookahead-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; }
-  .lookahead-table tr:last-child td { border-bottom: none; }
-  .lookahead-table tr.today-row td { background: #1a1030; }
-  .lookahead-table tr.off-row td { opacity: 0.45; }
-  .blocks-mini { display: flex; gap: 4px; flex-wrap: wrap; }
-  .bchip { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: var(--surface2); color: var(--accent-light); border: 1px solid var(--border); }
-  .bchip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .day-tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; display: inline-block; margin-bottom: 2px; }
-  .d-today { background: var(--accent); color: #fff; }
-  .d-normal { background: var(--surface2); color: var(--muted); }
-  .d-off { background: #1a1d27; color: #4b5563; border: 1px solid #2e3250; }
-  .gameplan-list { list-style: none; counter-reset: gp; }
-  .gameplan-list li { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .gameplan-list li:last-child { border-bottom: none; }
-  .gp-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .gp-text { font-size: 14px; }
-  .gp-text strong { color: var(--text); }
-  .gp-text .muted { color: var(--muted); }
-  .footer { padding: 24px 32px; background: var(--surface); border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
-  .footer h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; color: var(--muted); }
-  .footer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-  .fi { display: flex; gap: 8px; align-items: flex-start; }
-  .fdot { width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-  .fdot-warn { background: var(--yellow); }
-  .fdot-ok { background: var(--green); }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.5;padding:24px 16px 64px}
+  .wrap{max-width:880px;margin:0 auto}
+  header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+  h1{margin:0 0 6px;font-size:26px}
+  .date{color:var(--muted);font-size:15px}
+  .badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .badge-unverified{background:#3a1d1d;color:var(--red);border:1px solid var(--red)}
+  .badge-day{background:#15324d;color:var(--accent);border:1px solid var(--accent)}
+  .banner{border-radius:10px;padding:16px 18px;margin-bottom:18px;border:1px solid}
+  .banner-summer{background:#15324d;border-color:var(--accent)}
+  .banner-warn{background:#3a2f12;border-color:var(--amber)}
+  .banner h3{margin:0 0 6px;font-size:16px}
+  .banner p{margin:0;color:var(--txt);font-size:14px}
+  section{margin-bottom:28px}
+  h2{font-size:18px;border-left:3px solid var(--accent);padding-left:10px;margin:0 0 14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+  .card .cl{font-weight:600;font-size:15px}
+  .card .meta{color:var(--muted);font-size:13px;margin-top:2px}
+  .notmeeting{opacity:.55}
+  .hw-item{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--line);
+    border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+  .hw-item.done .hw-text{text-decoration:line-through;color:var(--muted)}
+  .hw-checkbox{margin-top:3px;width:16px;height:16px;flex:0 0 auto}
+  .hw-text{flex:1;font-size:14px}
+  .due{font-size:12px;color:var(--amber);white-space:nowrap}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600}
+  ol{margin:0;padding-left:22px}
+  ol li{margin-bottom:8px;font-size:14px}
+  .btn{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:13px;cursor:pointer;margin-bottom:12px}
+  footer{border-top:1px solid var(--line);padding-top:16px;margin-top:32px;color:var(--muted);font-size:12px}
+  footer p{margin:4px 0}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <h1>Drew's Daily Briefing</h1>
+    <div class="date">Thursday, June 18, 2026</div>
+    <div class="badges">
+      <span class="badge badge-unverified">SCHEDULE UNVERIFIED</span>
+      <span class="badge badge-day">Summer Break &#x2014; No Classes</span>
+    </div>
+  </header>
 
-<div class="header">
-  <h1>Drew's Daily Briefing</h1>
-  <div class="date">Tuesday, May 19, 2026 -- Week 34 (End of Year)</div>
-  <div class="badge-row">
-    <span class="badge badge-day">MVC DOC: Day B-A-D-C</span>
-    <span class="badge-blocks">B &rarr; A &rarr; D &rarr; C</span>
-    <span class="badge badge-warn">SCHEDULE UNVERIFIED -- Blackbaud offline</span>
-  </div>
-</div>
-
-<div class="banner banner-warn">
-  Chrome extension offline -- Blackbaud not checked. Block order from MVC teacher doc (B, A, D, C for Tue 5/19). Verify on Blackbaud if anything looks off.
-</div>
-<div class="banner banner-info">
-  No Gmail emails from Branson teachers in personal inbox. Biology &amp; Sports &amp; Lit syllabi had fetch issues -- see footer for details.
-</div>
-
-<div class="section">
-  <div class="section-title">Today's Schedule</div>
-  <div class="schedule-grid">
-    <div class="block-card active">
-      <span class="pos-tag pos-1">1st</span>
-      <div class="block-label">B Block -- Meets Today</div>
-      <div class="block-class">Mandarin V</div>
-      <div class="block-teacher">Shujun Xiang</div>
-      <div class="block-room">Richardson Hall RH 2</div>
-      <div class="block-topic">Check Blackbaud for assignments</div>
-    </div>
-    <div class="block-card active">
-      <span class="pos-tag pos-2">2nd</span>
-      <div class="block-label">A Block -- Meets Today</div>
-      <div class="block-class">Sports &amp; Literature</div>
-      <div class="block-teacher">Dr. Jan</div>
-      <div class="block-room">New Oaks NO 4</div>
-      <div class="block-topic">Check Dr. Jan calendar for topic</div>
-    </div>
-    <div class="block-card active">
-      <span class="pos-tag pos-3">3rd</span>
-      <div class="block-label">D Block -- Meets Today</div>
-      <div class="block-class">Free Block</div>
-      <div class="block-teacher">Open Block</div>
-      <div class="block-room">--</div>
-      <div class="block-topic">Use for HW / catch-up</div>
-    </div>
-    <div class="block-card active">
-      <span class="pos-tag pos-4">4th</span>
-      <div class="block-label">C Block -- Meets Today</div>
-      <div class="block-class">College Counselling</div>
-      <div class="block-teacher">Guidance</div>
-      <div class="block-room">TBD</div>
-      <div class="block-topic">College planning session</div>
-    </div>
-    <div class="block-card inactive">
-      <div class="block-label">E Block -- Not Today</div>
-      <div class="block-class">Biology Honors</div>
-      <div class="block-teacher">Next: Wed 5/20</div>
-    </div>
-    <div class="block-card inactive">
-      <div class="block-label">F Block -- Not Today</div>
-      <div class="block-class">MVC (Multivariable Calc)</div>
-      <div class="block-teacher">Next: Wed 5/20 -- Watch Math Video</div>
-    </div>
-    <div class="block-card inactive">
-      <div class="block-label">G Block -- Not Today</div>
-      <div class="block-class">Digital Music</div>
-      <div class="block-teacher">Next: Wed 5/20</div>
-    </div>
-    <div class="block-card inactive">
-      <div class="block-label">H Block -- Not Today</div>
-      <div class="block-class">Moral Philosophy</div>
-      <div class="block-teacher">Next: Wed 5/20</div>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="st-row">
-    <div class="section-title" style="margin-bottom:0;">Homework Tracker</div>
-    <button class="clear-btn" id="btn-clear-all">Uncheck All</button>
+  <div class="banner banner-summer">
+    <h3>&#x2600;&#xFE0F; Summer Break</h3>
+    <p>The 2025&#x2013;26 school year has ended. There are no scheduled classes today. The regular A&#x2013;H block rotation does not apply during summer break. This briefing will resume normal class-by-class detail once the new school year begins.</p>
   </div>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">Mandarin V (B Block -- Shujun Xiang) <span class="meets-today">Meets today (1st)</span></div>
-    <div class="hw-item" data-id="man-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Check Blackbaud Assignment Center for Mandarin V assignments due today / this week</div>
-      <span class="due-badge due-today">Today</span>
+  <div class="banner banner-warn">
+    <h3>&#x26A0;&#xFE0F; Live data could not be verified</h3>
+    <p>The Chrome connection was offline during this run, so Blackbaud (live schedule and Mandarin / Moral Philosophy assignments), Google Calendar, and the Google Drive syllabi could not be read. Today's date falls in summer break, so no schedule was expected &#x2014; but nothing below is confirmed against live sources.</p>
+  </div>
+
+  <section>
+    <h2>Today's Meetings / Special Events</h2>
+    <div class="card notmeeting">
+      <div class="cl">No meetings detected</div>
+      <div class="meta">Google Calendar was unreachable this run. If you have a meeting today, it is not reflected here.</div>
     </div>
-    <div class="hw-note">Blackbaud was offline this morning. Check the Assignments tab in your Mandarin V class page.</div>
-  </div>
+  </section>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">Sports &amp; Literature (A Block -- Dr. Jan) <span class="meets-today">Meets today (2nd)</span></div>
-    <div class="hw-item" data-id="slit-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Review Dr. Jan's calendar for today's reading / writing assignment (Google Doc returned empty today)</div>
-      <span class="due-badge due-today">Today</span>
+  <section>
+    <h2>Today's Schedule</h2>
+    <div class="card notmeeting">
+      <div class="cl">No classes &#x2014; summer break</div>
+      <div class="meta">School-year block rotation (A&#x2013;H) is paused until the 2026&#x2013;27 year begins.</div>
     </div>
-    <div class="hw-note">Dr. Jan's calendar mobilebasic URL returned an empty response. Open the Google Doc directly to check.</div>
-  </div>
+  </section>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">College Counselling (C Block) <span class="meets-today">Meets today (4th)</span></div>
-    <div class="hw-item" data-id="cc-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Bring materials / questions for college counselling -- end of junior year, key planning time</div>
-      <span class="due-badge due-today">Today</span>
+  <section>
+    <h2>Homework Tracker</h2>
+    <button class="btn" id="btn-clear-all">Uncheck all</button>
+    <div class="hw-item" data-id="summer-1">
+      <input type="checkbox" class="hw-checkbox">
+      <span class="hw-text">No active coursework &#x2014; summer break. Use this space for summer reading, college-essay drafts, or test prep.</span>
+      <span class="due">&#x2014;</span>
     </div>
-  </div>
+  </section>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">MVC (F Block -- Dr. Xiang) <span class="no-meet">Not meeting today</span></div>
-    <div class="hw-item" data-id="mvc-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Week 34: Group Quiz Day 2 already happened for your block (Mon 5/18). Nothing due today.</div>
-      <span class="due-badge due-later">Done</span>
-    </div>
-    <div class="hw-item" data-id="mvc-2">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Wed 5/20 (next F block): Watch Math Video or attend Optional Math Talk -- no written HW</div>
-      <span class="due-badge due-soon">Wed 5/20</span>
-    </div>
-    <div class="hw-note">No written homework for Week 34. MVC is winding down for the year.</div>
-  </div>
+  <section>
+    <h2>7-Day Lookahead</h2>
+    <table>
+      <thead><tr><th>Day</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Thu Jun 18</td><td>Summer break</td><td>No classes</td></tr>
+        <tr><td>Fri Jun 19</td><td>Summer break</td><td>No classes</td></tr>
+        <tr><td>Sat Jun 20</td><td>Weekend</td><td>&#x2014;</td></tr>
+        <tr><td>Sun Jun 21</td><td>Weekend</td><td>&#x2014;</td></tr>
+        <tr><td>Mon Jun 22</td><td>Summer break</td><td>No classes</td></tr>
+        <tr><td>Tue Jun 23</td><td>Summer break</td><td>No classes</td></tr>
+        <tr><td>Wed Jun 24</td><td>Summer break</td><td>No classes</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">Biology Honors (E Block) <span class="no-meet">Not meeting today</span></div>
-    <div class="hw-item" data-id="bio-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Check Biology syllabus on Blackbaud for any assignments due this week (doc unreadable today)</div>
-      <span class="due-badge due-na">Verify</span>
-    </div>
-    <div class="hw-note">Biology Honors syllabus doc is too large to parse. Check Blackbaud or your class notes.</div>
-  </div>
+  <section>
+    <h2>Game Plan</h2>
+    <ol>
+      <li>Enjoy the break &#x2014; no assignments are due.</li>
+      <li>If you want this briefing to track summer goals (reading list, college applications, golf practice), reply to the briefing email and the task can be updated.</li>
+      <li>Reconnect the Chrome extension before the school year so live Blackbaud verification resumes automatically.</li>
+    </ol>
+  </section>
 
-  <div class="hw-subject">
-    <div class="hw-subject-title">Moral Philosophy (H Block) <span class="no-meet">Not meeting today</span></div>
-    <div class="hw-item" data-id="mph-1">
-      <input type="checkbox" class="hw-checkbox" onclick="event.stopPropagation()">
-      <div class="hw-text">Check Blackbaud for Moral Philosophy assignments -- H Block next meets Wed 5/20</div>
-      <span class="due-badge due-soon">Wed 5/20</span>
-    </div>
-  </div>
-
-</div>
-
-<div class="section">
-  <div class="section-title">7-Day Lookahead</div>
-  <table class="lookahead-table">
-    <thead>
-      <tr><th>Day</th><th>Blocks</th><th>Key Items</th></tr>
-    </thead>
-    <tbody>
-      <tr class="today-row">
-        <td><span class="day-tag d-today">TODAY</span><br><strong>Tue 5/19</strong></td>
-        <td><div class="blocks-mini"><span class="bchip on">B</span><span class="bchip on">A</span><span class="bchip on">D</span><span class="bchip on">C</span></div></td>
-        <td>Mandarin V, Sports &amp; Lit, Free Block, College Counselling. MVC Group Quiz Day 2 was Mon (your block done).</td>
-      </tr>
-      <tr>
-        <td><span class="day-tag d-normal">Wed</span><br><strong>5/20</strong></td>
-        <td><div class="blocks-mini"><span class="bchip">E</span><span class="bchip">F</span><span class="bchip">G</span><span class="bchip">H</span></div></td>
-        <td>Biology Honors, MVC (Watch Math Video -- no HW), Digital Music, Moral Philosophy.</td>
-      </tr>
-      <tr>
-        <td><span class="day-tag d-normal">Thu</span><br><strong>5/21</strong></td>
-        <td><div class="blocks-mini"><span class="bchip">C</span><span class="bchip">D</span><span class="bchip">A</span><span class="bchip">B</span></div></td>
-        <td>College Counselling, Free Block, Sports &amp; Lit, Mandarin V. MVC: Watch Math Video (CDAB group).</td>
-      </tr>
-      <tr class="off-row">
-        <td><span class="day-tag d-off">NO SCHOOL</span><br><strong>Fri 5/22</strong></td>
-        <td>--</td>
-        <td>Teacher Work Day -- no classes for students.</td>
-      </tr>
-      <tr class="off-row">
-        <td><span class="day-tag d-off">Weekend</span><br><strong>Sat 5/23</strong></td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr class="off-row">
-        <td><span class="day-tag d-off">Weekend</span><br><strong>Sun 5/24</strong></td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr class="off-row">
-        <td><span class="day-tag d-off">NO SCHOOL</span><br><strong>Mon 5/25</strong></td>
-        <td>--</td>
-        <td>Memorial Day -- no classes.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="section">
-  <div class="section-title">Game Plan</div>
-  <ol class="gameplan-list">
-    <li>
-      <div class="gp-num">1</div>
-      <div class="gp-text"><strong>Mandarin V (B Block, 1st period):</strong> <span class="muted">Head to Richardson Hall RH 2. Pull up Blackbaud on your phone to check any assignments before class.</span></div>
-    </li>
-    <li>
-      <div class="gp-num">2</div>
-      <div class="gp-text"><strong>Sports &amp; Lit (A Block, 2nd period):</strong> <span class="muted">Dr. Jan calendar unavailable today. Check your notes or the Google Doc before class -- New Oaks NO 4.</span></div>
-    </li>
-    <li>
-      <div class="gp-num">3</div>
-      <div class="gp-text"><strong>Free Block (D Block, 3rd):</strong> <span class="muted">Great time to check Blackbaud for Biology and Moral Philosophy assignments, and review Mandarin vocab.</span></div>
-    </li>
-    <li>
-      <div class="gp-num">4</div>
-      <div class="gp-text"><strong>College Counselling (C Block, 4th):</strong> <span class="muted">End of junior year -- important planning time. Bring questions about college list, essays, summer plans.</span></div>
-    </li>
-    <li>
-      <div class="gp-num">5</div>
-      <div class="gp-text"><strong>MVC -- nothing due today:</strong> <span class="muted">Group Quiz already done. Next MVC is Wed 5/20 -- just watch a math video, no written work.</span></div>
-    </li>
-    <li>
-      <div class="gp-num">6</div>
-      <div class="gp-text"><strong>Short week ahead:</strong> <span class="muted">Fri 5/22 is Teacher Work Day (no classes) and Mon 5/25 is Memorial Day. Next real school day after today's schedule: Wed, Thu, then long weekend!</span></div>
-    </li>
-    <li>
-      <div class="gp-num">7</div>
-      <div class="gp-text"><strong>Tonight -- log into Blackbaud:</strong> <span class="muted">Chrome extension was offline this morning. Verify block order for tomorrow and grab any Mandarin / Moral Phil assignments from the Assignment Center.</span></div>
-    </li>
-  </ol>
-</div>
-
-<div class="footer">
-  <h4>Data Sources &amp; Status</h4>
-  <div class="footer-grid">
-    <div class="fi"><div class="fdot fdot-warn"></div><div><strong>Blackbaud:</strong> Offline -- Chrome extension not connected. Schedule, Mandarin V, and Moral Phil assignments not fetched.</div></div>
-    <div class="fi"><div class="fdot fdot-ok"></div><div><strong>MVC Assignment Sheet:</strong> Fetched OK. B,A,D,C confirmed for Tue 5/19. Week 34: Group Quiz Day 2, no written HW.</div></div>
-    <div class="fi"><div class="fdot fdot-warn"></div><div><strong>Biology Syllabus:</strong> Fetched but too large to parse (52k chars). Verify on Blackbaud.</div></div>
-    <div class="fi"><div class="fdot fdot-warn"></div><div><strong>Dr. Jan Calendar:</strong> mobilebasic URL returned empty (likely auth required). Check Google Drive directly.</div></div>
-    <div class="fi"><div class="fdot fdot-warn"></div><div><strong>Gmail (personal):</strong> No Branson teacher emails found. School emails at andrew_kalafatas@branson.org.</div></div>
-    <div class="fi"><div class="fdot fdot-ok"></div><div><strong>Rotation anchor:</strong> Day 1 (ABCD) = Mon Apr 13, 2026. MVC teacher doc says Tue 5/19 = B,A,D,C (used as authoritative source).</div></div>
-  </div>
-  <div style="margin-top:16px;color:#4b5563;font-size:12px;">
-    Generated automatically at 5:00 AM -- Tuesday, May 19, 2026.
-    Live briefing: <a href="https://championyouthafrica.github.io/briefing/" style="color:var(--accent-light);">championyouthafrica.github.io/briefing</a>
-  </div>
+  <footer>
+    <p><strong>Data sources this run:</strong> Gmail connector (no recent Branson teacher emails found, last 14&#x2013;21 days).</p>
+    <p><strong>Unavailable this run:</strong> Blackbaud / myschoolapp (Chrome offline), Google Calendar (Chrome offline), Google Drive syllabi &#x2014; MVC, Biology, Sports &amp; Lit (Chrome offline), TeamSnap golf (requires login).</p>
+    <p><strong>Block rotation anchor:</strong> Day 1 (A B C D) = Mon Apr 13, 2026. Calculated day-in-cycle for today would be Day 1, but this is NOT verified and does not apply during summer break.</p>
+    <p>Generated automatically by Drew's daily briefing task.</p>
+  </footer>
 </div>
 
 <script>
@@ -372,6 +166,5 @@
   }
 })();
 </script>
-
 </body>
 </html>

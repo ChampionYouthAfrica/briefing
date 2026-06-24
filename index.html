@@ -5,128 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Drew's Daily Briefing</title>
 <style>
-  :root{
-    --bg:#0f1419; --panel:#1a212b; --panel2:#222b38; --line:#2d3947;
-    --txt:#e6edf3; --muted:#9aa7b4; --accent:#4da3ff; --green:#3fb950;
-    --amber:#d29922; --red:#f85149;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--txt);line-height:1.5;padding:24px 16px 64px}
-  .wrap{max-width:880px;margin:0 auto}
-  header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}
-  h1{margin:0 0 6px;font-size:26px}
-  .date{color:var(--muted);font-size:15px}
-  .badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
-  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600}
-  .badge-unverified{background:#3a1d1d;color:var(--red);border:1px solid var(--red)}
-  .badge-day{background:#15324d;color:var(--accent);border:1px solid var(--accent)}
-  .banner{border-radius:10px;padding:16px 18px;margin-bottom:18px;border:1px solid}
-  .banner-summer{background:#15324d;border-color:var(--accent)}
-  .banner-warn{background:#3a2f12;border-color:var(--amber)}
-  .banner h3{margin:0 0 6px;font-size:16px}
-  .banner p{margin:0;color:var(--txt);font-size:14px}
-  section{margin-bottom:28px}
-  h2{font-size:18px;border-left:3px solid var(--accent);padding-left:10px;margin:0 0 14px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
-  .card .cl{font-weight:600;font-size:15px}
-  .card .meta{color:var(--muted);font-size:13px;margin-top:2px}
-  .notmeeting{opacity:.55}
-  .hw-item{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--line);
-    border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
-  .hw-item.done .hw-text{text-decoration:line-through;color:var(--muted)}
-  .hw-checkbox{margin-top:3px;width:16px;height:16px;flex:0 0 auto}
-  .hw-text{flex:1;font-size:14px}
-  .due{font-size:12px;color:var(--amber);white-space:nowrap}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--muted);font-weight:600}
-  ol{margin:0;padding-left:22px}
-  ol li{margin-bottom:8px;font-size:14px}
-  .btn{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;
-    padding:6px 12px;font-size:13px;cursor:pointer;margin-bottom:12px}
-  footer{border-top:1px solid var(--line);padding-top:16px;margin-top:32px;color:var(--muted);font-size:12px}
-  footer p{margin:4px 0}
+  :root{--bg:#0e1116;--card:#171c24;--card2:#1e242e;--line:#2a313c;--txt:#e6edf3;--mut:#9aa7b4;--accent:#5b9dff;--good:#3fb950;--warn:#d29922;--bad:#f85149;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:0 0 60px;}
+  .wrap{max-width:880px;margin:0 auto;padding:20px 18px;}
+  header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:8px;}
+  h1{margin:0 0 4px;font-size:26px;}
+  .date{color:var(--mut);font-size:15px;}
+  .badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:13px;font-weight:600;margin-top:8px;}
+  .badge-unverified{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid var(--bad);}
+  .badge-day{background:rgba(91,157,255,.15);color:var(--accent);border:1px solid var(--accent);margin-left:6px;}
+  .banner{border-radius:10px;padding:12px 14px;margin:14px 0;font-size:14px;}
+  .banner-warn{background:rgba(210,153,34,.12);border:1px solid var(--warn);color:#f0d38a;}
+  .banner-info{background:rgba(91,157,255,.1);border:1px solid var(--accent);color:#bcd6ff;}
+  h2{font-size:17px;margin:26px 0 12px;border-left:3px solid var(--accent);padding-left:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px;}
+  .block-tag{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;border-radius:6px;background:var(--card2);color:var(--accent);font-weight:700;margin-right:10px;}
+  .block-class{font-weight:600;}
+  .block-meta{color:var(--mut);font-size:13px;margin-top:2px;margin-left:36px;}
+  .nomeet{opacity:.5;}
+  .hw-subj{font-weight:700;color:var(--accent);margin:16px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
+  .hw-item{display:flex;align-items:flex-start;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;margin-bottom:6px;cursor:pointer;}
+  .hw-item .hw-checkbox{margin-top:3px;width:16px;height:16px;flex:none;}
+  .hw-item.done .hw-text{text-decoration:line-through;color:var(--mut);}
+  .hw-text{flex:1;font-size:14px;}
+  .due{font-size:12px;color:var(--mut);background:var(--card2);border-radius:12px;padding:2px 8px;white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--mut);font-weight:600;}
+  .gp{counter-reset:gp;list-style:none;padding:0;}
+  .gp li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px 10px 44px;margin-bottom:8px;position:relative;font-size:14px;}
+  .gp li::before{counter-increment:gp;content:counter(gp);position:absolute;left:12px;top:10px;width:22px;height:22px;line-height:22px;text-align:center;background:var(--accent);color:#08111f;border-radius:50%;font-weight:700;font-size:12px;}
+  .btn{background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;color:var(--mut);font-size:12px;}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>Drew's Daily Briefing</h1>
-    <div class="date">Thursday, June 18, 2026</div>
-    <div class="badges">
-      <span class="badge badge-unverified">SCHEDULE UNVERIFIED</span>
-      <span class="badge badge-day">Summer Break &#x2014; No Classes</span>
-    </div>
-  </header>
+<header>
+  <h1>Drew's Daily Briefing</h1>
+  <div class="date">Wednesday, June 24, 2026</div>
+  <span class="badge badge-unverified">&#x26A0;&#xFE0F; SCHEDULE UNVERIFIED</span>
+  <span class="badge badge-day">Fallback rotation: Day 5 &#x2014; B A D C</span>
+</header>
 
-  <div class="banner banner-summer">
-    <h3>&#x2600;&#xFE0F; Summer Break</h3>
-    <p>The 2025&#x2013;26 school year has ended. There are no scheduled classes today. The regular A&#x2013;H block rotation does not apply during summer break. This briefing will resume normal class-by-class detail once the new school year begins.</p>
-  </div>
+<div class="banner banner-warn">
+  <strong>Chrome was offline this run.</strong> Blackbaud (live schedule, Mandarin&nbsp;V + Moral Philosophy assignments), Google&nbsp;Drive syllabi (MVC, Biology, Sports&nbsp;&amp;&nbsp;Lit), and Google&nbsp;Calendar could not be reached. The block order below is the <em>calculated</em> fallback only and was not confirmed against Blackbaud.
+</div>
 
-  <div class="banner banner-warn">
-    <h3>&#x26A0;&#xFE0F; Live data could not be verified</h3>
-    <p>The Chrome connection was offline during this run, so Blackbaud (live schedule and Mandarin / Moral Philosophy assignments), Google Calendar, and the Google Drive syllabi could not be read. Today's date falls in summer break, so no schedule was expected &#x2014; but nothing below is confirmed against live sources.</p>
-  </div>
+<div class="banner banner-info">
+  <strong>Heads up:</strong> June&nbsp;24 falls after Branson's normal academic year, so this is most likely <strong>summer break with no classes today</strong>. The schedule below is shown only for continuity. No new teacher emails were found in Gmail over the last several days.
+</div>
 
-  <section>
-    <h2>Today's Meetings / Special Events</h2>
-    <div class="card notmeeting">
-      <div class="cl">No meetings detected</div>
-      <div class="meta">Google Calendar was unreachable this run. If you have a meeting today, it is not reflected here.</div>
-    </div>
-  </section>
+<h2>Today's Meetings / Special Events</h2>
+<div class="card">No non-class meetings found. (Google Calendar could not be checked &#x2014; Chrome offline.) The one-time College Counseling meeting with Matt Lane was April&nbsp;29 and has passed.</div>
 
-  <section>
-    <h2>Today's Schedule</h2>
-    <div class="card notmeeting">
-      <div class="cl">No classes &#x2014; summer break</div>
-      <div class="meta">School-year block rotation (A&#x2013;H) is paused until the 2026&#x2013;27 year begins.</div>
-    </div>
-  </section>
+<h2>Today's Schedule <span style="color:var(--mut);font-weight:400;font-size:13px;">(fallback Day 5: B A D C &#x2014; unverified)</span></h2>
+<div class="card"><span class="block-tag">B</span><span class="block-class">Mandarin V</span><div class="block-meta">Shujun Xiang &#x2014; Richardson Hall RH&nbsp;2</div></div>
+<div class="card"><span class="block-tag">A</span><span class="block-class">Sports and Literature (English III Honors)</span><div class="block-meta">Dr. Jan &#x2014; New Oaks NO&nbsp;4</div></div>
+<div class="card"><span class="block-tag">D</span><span class="block-class">Free Block (Open Block)</span><div class="block-meta">&#x2014;</div></div>
+<div class="card"><span class="block-tag">C</span><span class="block-class">College Counselling</span><div class="block-meta">&#x2014;</div></div>
+<div class="card nomeet"><span class="block-tag">E</span><span class="block-class">Biology Honors</span><div class="block-meta">NOT MEETING TODAY</div></div>
+<div class="card nomeet"><span class="block-tag">F</span><span class="block-class">MVC</span><div class="block-meta">NOT MEETING TODAY</div></div>
+<div class="card nomeet"><span class="block-tag">G</span><span class="block-class">Digital Music</span><div class="block-meta">NOT MEETING TODAY</div></div>
+<div class="card nomeet"><span class="block-tag">H</span><span class="block-class">Moral Philosophy</span><div class="block-meta">NOT MEETING TODAY</div></div>
 
-  <section>
-    <h2>Homework Tracker</h2>
-    <button class="btn" id="btn-clear-all">Uncheck all</button>
-    <div class="hw-item" data-id="summer-1">
-      <input type="checkbox" class="hw-checkbox">
-      <span class="hw-text">No active coursework &#x2014; summer break. Use this space for summer reading, college-essay drafts, or test prep.</span>
-      <span class="due">&#x2014;</span>
-    </div>
-  </section>
+<h2>Homework Tracker</h2>
+<div class="banner banner-info">No live assignment data this run &#x2014; Blackbaud and the Google&nbsp;Drive syllabi (MVC, Biology, Sports&nbsp;&amp;&nbsp;Lit) were unreachable with Chrome offline. Items below are placeholders so the tracker keeps working; verify on Blackbaud once you are back online.</div>
 
-  <section>
-    <h2>7-Day Lookahead</h2>
-    <table>
-      <thead><tr><th>Day</th><th>Status</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td>Thu Jun 18</td><td>Summer break</td><td>No classes</td></tr>
-        <tr><td>Fri Jun 19</td><td>Summer break</td><td>No classes</td></tr>
-        <tr><td>Sat Jun 20</td><td>Weekend</td><td>&#x2014;</td></tr>
-        <tr><td>Sun Jun 21</td><td>Weekend</td><td>&#x2014;</td></tr>
-        <tr><td>Mon Jun 22</td><td>Summer break</td><td>No classes</td></tr>
-        <tr><td>Tue Jun 23</td><td>Summer break</td><td>No classes</td></tr>
-        <tr><td>Wed Jun 24</td><td>Summer break</td><td>No classes</td></tr>
-      </tbody>
-    </table>
-  </section>
+<div class="hw-subj">MVC</div>
+<div class="hw-item" data-id="mvc-check"><input type="checkbox" class="hw-checkbox"><span class="hw-text">Check MVC Assignment Sheet for any current work</span><span class="due">verify</span></div>
 
-  <section>
-    <h2>Game Plan</h2>
-    <ol>
-      <li>Enjoy the break &#x2014; no assignments are due.</li>
-      <li>If you want this briefing to track summer goals (reading list, college applications, golf practice), reply to the briefing email and the task can be updated.</li>
-      <li>Reconnect the Chrome extension before the school year so live Blackbaud verification resumes automatically.</li>
-    </ol>
-  </section>
+<div class="hw-subj">Biology Honors</div>
+<div class="hw-item" data-id="bio-check"><input type="checkbox" class="hw-checkbox"><span class="hw-text">Check Honors Biology syllabus for any current work</span><span class="due">verify</span></div>
 
-  <footer>
-    <p><strong>Data sources this run:</strong> Gmail connector (no recent Branson teacher emails found, last 14&#x2013;21 days).</p>
-    <p><strong>Unavailable this run:</strong> Blackbaud / myschoolapp (Chrome offline), Google Calendar (Chrome offline), Google Drive syllabi &#x2014; MVC, Biology, Sports &amp; Lit (Chrome offline), TeamSnap golf (requires login).</p>
-    <p><strong>Block rotation anchor:</strong> Day 1 (A B C D) = Mon Apr 13, 2026. Calculated day-in-cycle for today would be Day 1, but this is NOT verified and does not apply during summer break.</p>
-    <p>Generated automatically by Drew's daily briefing task.</p>
-  </footer>
+<div class="hw-subj">Sports &amp; Literature</div>
+<div class="hw-item" data-id="lit-check"><input type="checkbox" class="hw-checkbox"><span class="hw-text">Check Dr. Jan's calendar for any current reading/writing</span><span class="due">verify</span></div>
+
+<div class="hw-subj">Mandarin V</div>
+<div class="hw-item" data-id="man-check"><input type="checkbox" class="hw-checkbox"><span class="hw-text">Check Blackbaud (B Block) for Mandarin assignments</span><span class="due">verify</span></div>
+
+<div class="hw-subj">Moral Philosophy</div>
+<div class="hw-item" data-id="phil-check"><input type="checkbox" class="hw-checkbox"><span class="hw-text">Check Blackbaud (H Block) for Moral Philosophy assignments</span><span class="due">verify</span></div>
+
+<div style="margin-top:10px;"><button class="btn" id="btn-clear-all">Uncheck all</button></div>
+
+<h2>7-Day Lookahead</h2>
+<table>
+<tr><th>Day</th><th>Rotation (fallback)</th><th>Key items</th></tr>
+<tr><td>Wed Jun 24</td><td>Day 5 &#x2014; B A D C</td><td>Likely summer break &#x2014; unverified</td></tr>
+<tr><td>Thu Jun 25</td><td>Day 6 &#x2014; E F G H</td><td>&#x2014;</td></tr>
+<tr><td>Fri Jun 26</td><td>Day 1 &#x2014; A B C D</td><td>&#x2014;</td></tr>
+<tr><td>Sat Jun 27</td><td>&#x2014;</td><td>Weekend</td></tr>
+<tr><td>Sun Jun 28</td><td>&#x2014;</td><td>Weekend</td></tr>
+<tr><td>Mon Jun 29</td><td>Day 2 &#x2014; H G F E</td><td>&#x2014;</td></tr>
+<tr><td>Tue Jun 30</td><td>Day 3 &#x2014; D C B A</td><td>&#x2014;</td></tr>
+</table>
+
+<h2>Game Plan</h2>
+<ol class="gp">
+<li>If school is in session, confirm today's real block order on Blackbaud &#x2014; the rotation above is calculated, not verified.</li>
+<li>Reconnect the Chrome extension (sign in / reopen Chrome) so future briefings can pull live Blackbaud, Drive syllabi, and Calendar data.</li>
+<li>Open each syllabus (MVC, Biology, Sports&nbsp;&amp;&nbsp;Lit) and Blackbaud (Mandarin, Moral Phil) to refresh the homework tracker.</li>
+<li>If it is summer break, enjoy it &#x2014; no action needed today.</li>
+</ol>
+
+<footer>
+  <strong>Data sources this run:</strong> Gmail (connected; no recent teacher emails) &#x2022; calculated block rotation.<br>
+  <strong>Unavailable (Chrome offline):</strong> Blackbaud live schedule + Mandarin/Moral&nbsp;Phil assignments, Google&nbsp;Drive syllabi (MVC, Biology, Sports&nbsp;&amp;&nbsp;Lit), Google&nbsp;Calendar, TeamSnap golf schedule.<br>
+  <strong>Rotation anchor:</strong> Day&nbsp;1 (A&nbsp;B&nbsp;C&nbsp;D) = Mon&nbsp;Apr&nbsp;13,&nbsp;2026. Note: the calculated fallback counts weekdays and does not account for school holidays or the end of the academic year, so it is unreliable this late in June.<br>
+  Generated automatically &#x2014; Wednesday, June 24, 2026.
+</footer>
 </div>
 
 <script>

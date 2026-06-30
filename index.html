@@ -6,101 +6,97 @@
 <title>Drew's Daily Briefing</title>
 <style>
   :root{
-    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --border:#2d333b;
-    --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --green:#3fb950;
-    --amber:#d29922; --red:#f85149; --purple:#bc8cff;
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --border:#2a3140;
+    --text:#e6edf3; --muted:#9aa6b2; --accent:#58a6ff; --green:#3fb950;
+    --amber:#d29922; --red:#f85149; --sun:#f2cc60;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     line-height:1.5;padding:24px;}
   .wrap{max-width:860px;margin:0 auto;}
-  header{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:24px;}
+  header{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:20px;}
   h1{margin:0 0 6px;font-size:26px;}
   .date{color:var(--muted);font-size:15px;}
-  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;
-    font-weight:600;margin-top:10px;}
-  .badge.summer{background:rgba(188,140,255,.15);color:var(--purple);border:1px solid var(--purple);}
-  .badge.unverified{background:rgba(248,81,73,.12);color:var(--red);border:1px solid var(--red);margin-left:8px;}
-  .banner{background:var(--panel2);border:1px solid var(--border);border-left:4px solid var(--purple);
-    border-radius:8px;padding:14px 16px;margin-bottom:18px;}
-  .banner.warn{border-left-color:var(--amber);}
-  .banner h3{margin:0 0 4px;font-size:15px;}
-  .banner p{margin:0;color:var(--muted);font-size:14px;}
-  section{margin-bottom:26px;}
-  h2{font-size:18px;border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:14px;}
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;
-    padding:14px 16px;margin-bottom:10px;}
-  .card .blk{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.5px;}
-  .card .cls{font-size:16px;margin:2px 0;}
-  .card .meta{color:var(--muted);font-size:13px;}
+  .badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;}
+  .badge{display:inline-block;padding:5px 11px;border-radius:999px;font-size:13px;font-weight:600;}
+  .badge.sun{background:rgba(242,204,96,.15);color:var(--sun);border:1px solid rgba(242,204,96,.4);}
+  .badge.unverified{background:rgba(248,81,73,.12);color:var(--red);border:1px solid rgba(248,81,73,.4);}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    padding:20px;margin-bottom:18px;}
+  .card h2{margin:0 0 12px;font-size:18px;}
+  .hero{text-align:center;padding:34px 20px;}
+  .hero .big{font-size:48px;margin-bottom:8px;}
+  .hero p{color:var(--muted);margin:6px 0;max-width:560px;margin-left:auto;margin-right:auto;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px;}
+  .mini{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;}
+  .mini .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+  .mini .v{font-size:16px;margin-top:4px;}
   ul{margin:8px 0 0;padding-left:20px;}
-  li{margin-bottom:6px;color:var(--muted);font-size:14px;}
-  footer{border-top:1px solid var(--border);padding-top:14px;margin-top:30px;
-    color:var(--muted);font-size:12px;}
+  li{margin:6px 0;}
+  .muted{color:var(--muted);}
+  footer{color:var(--muted);font-size:13px;border-top:1px solid var(--border);
+    padding-top:14px;margin-top:8px;}
   a{color:var(--accent);}
-  .src{font-size:12px;color:var(--muted);}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>Drew&#x2019;s Daily Briefing</h1>
-    <div class="date">Friday, June 26, 2026</div>
-    <span class="badge summer">SUMMER BREAK &#x2014; NO CLASSES</span>
-    <span class="badge unverified">SCHEDULE UNVERIFIED</span>
+    <h1>Drew's Daily Briefing</h1>
+    <div class="date">Monday, June 29, 2026</div>
+    <div class="badges">
+      <span class="badge sun">&#x2600;&#xFE0F; SUMMER BREAK &#x2014; NO CLASSES</span>
+      <span class="badge unverified">&#x26A0;&#xFE0F; SCHEDULE UNVERIFIED</span>
+    </div>
   </header>
 
-  <div class="banner">
-    <h3>&#x2600;&#xFE0F; School is out for summer</h3>
-    <p>The 2025&#x2013;26 academic year has ended (classes ran through late May). There is no block rotation or class schedule today.</p>
+  <div class="card hero">
+    <div class="big">&#x1F3D6;&#xFE0F;</div>
+    <h2 style="margin-top:0;">School is out for summer</h2>
+    <p>The 2025&#x2013;26 academic year ended in late May. There are no classes, no block
+       rotation, and no homework due today. Enjoy the break.</p>
+    <p class="muted">This briefing will return to full class-and-assignment mode when the
+       2026&#x2013;27 school year begins.</p>
   </div>
 
-  <div class="banner warn">
-    <h3>&#x26A0;&#xFE0F; Live data sources could not be reached</h3>
-    <p>The Chrome extension was not connected this run, so Blackbaud (live schedule + Mandarin/Moral Philosophy assignments), Google Calendar, and TeamSnap could not be verified. The summer-break status is based on the course syllabi, which end in late May.</p>
+  <div class="card">
+    <h2>Today's Status</h2>
+    <div class="grid">
+      <div class="mini"><div class="k">Day Type</div><div class="v">Summer weekday</div></div>
+      <div class="mini"><div class="k">Classes</div><div class="v">None &#x2014; out of session</div></div>
+      <div class="mini"><div class="k">Assignments Due</div><div class="v">None</div></div>
+      <div class="mini"><div class="k">Teacher Emails (5d)</div><div class="v">None</div></div>
+    </div>
   </div>
 
-  <section>
-    <h2>Today&#x2019;s Meetings &amp; Events</h2>
-    <div class="card">
-      <div class="cls">No meetings detected.</div>
-      <div class="meta">Google Calendar could not be checked (Chrome offline). If you have a summer commitment today &#x2014; golf, college prep, etc. &#x2014; verify it directly.</div>
-    </div>
-  </section>
+  <div class="card">
+    <h2>Special Events / Meetings</h2>
+    <p class="muted">No scheduled meetings detected. Calendar could not be checked live this
+       run (browser session unavailable), so verify Google Calendar directly if you expect
+       anything &#x2014; e.g. summer golf, college visits, or appointments.</p>
+  </div>
 
-  <section>
-    <h2>Today&#x2019;s Schedule</h2>
-    <div class="card">
-      <div class="cls">No classes &#x2014; summer break.</div>
-      <div class="meta">Regular A&#x2013;H block rotation resumes when the 2026&#x2013;27 school year begins (Drew&#x2019;s senior year, Class of 2027).</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Homework Tracker</h2>
-    <div class="card">
-      <div class="cls">No active assignments.</div>
-      <div class="meta">All course syllabi (MVC, Biology Honors, Sports &amp; Literature, Mandarin V, Moral Philosophy) ended with the spring term. Nothing is due.</div>
-    </div>
-  </section>
-
-  <section>
+  <div class="card">
     <h2>Summer Game Plan</h2>
-    <div class="card">
-      <ul>
-        <li>Class of 2027 &#x2014; this is the summer before senior year. College applications ramp up: draft your Common App personal essay and build a college list.</li>
-        <li>Keep golf sharp at Peacock Gap; check TeamSnap for any summer Boys Varsity sessions.</li>
-        <li>Optional: get ahead on senior-year reading or any summer assignments Branson posts to Blackbaud.</li>
-        <li>Reconnect the Chrome extension so the daily briefing can resume live verification when school starts back up.</li>
-      </ul>
-    </div>
-  </section>
+    <ul>
+      <li>Keep up Mandarin V with light reading or review to hold momentum into senior fall.</li>
+      <li>Class of 2027 &#x2014; this summer is prime time for college essays and the
+          Common App. Draft early while the calendar is open.</li>
+      <li>Golf: log practice rounds at Peacock Gap to stay sharp for the fall season.</li>
+      <li>Digital Music / Ableton: a good window for personal projects on the Desktop sessions.</li>
+    </ul>
+  </div>
 
   <footer>
-    <p><strong>Data sources this run:</strong> MVC Assignment Sheet (Google Doc, fetched) &#x2014; confirms term ends late May. Sports &amp; Lit calendar returned no text. <strong>Unavailable:</strong> Blackbaud, Google Calendar, TeamSnap, Gmail teacher search (Chrome extension not connected).</p>
-    <p><strong>Block rotation anchor:</strong> Day 1 (A B C D) = Mon Apr 13, 2026. Not applied today (summer break).</p>
-    <p>Generated automatically &#x2014; Friday, June 26, 2026.</p>
+    <p><strong>Data sources:</strong> Gmail (championyouthsafrica@gmail.com) checked via
+       connector &#x2014; no recent Branson teacher emails.</p>
+    <p><strong>Unavailable this run:</strong> Blackbaud schedule, Google Drive syllabi, and
+       Google Calendar &#x2014; the browser session was not connected. During summer break these
+       sources carry no class data, so the briefing is unaffected. The &#x201C;SCHEDULE
+       UNVERIFIED&#x201D; badge reflects that the block rotation was not checked against
+       Blackbaud (not applicable while school is out).</p>
+    <p>Block rotation anchor: Day 1 (ABCD) = Mon Apr 13, 2026. Generated automatically.</p>
   </footer>
 </div>
 </body>
